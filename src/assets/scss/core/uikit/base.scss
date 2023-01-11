@@ -1,0 +1,271 @@
+@use 'sass:map';
+
+/* UIKit: Base */
+html {
+    font-family: var(--body-font-typeface, system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif);
+    color: var(--body-color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'zero' on;
+}
+
+body {
+    font-family: var(--body-font-typeface, system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif);
+    font-size: var(--body-font-size, 16px);
+    font-weight: var(--body-font-weight, 400);
+    letter-spacing: var(--body-font-spacing, normal);
+    background-color: var(--body-color-background, white);
+    color: inherit;
+    position: relative;
+}
+
+// Link
+a, .uk-link {
+    color: var(--link-color-text);
+    &:hover {
+        color: var(--link-color-text-hover);
+    }
+}
+.uk-link {
+    display: inline-flex;
+    align-items: center;
+    line-height: 16px;
+}
+
+// Heading
+.uk-logo, .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font-typeface, sans-serif);
+    font-weight: var(--heading-font-weight, 700);
+    letter-spacing: var(--heading-font-spacing, normal);
+    font-style: var(--heading-font-style, normal);
+    text-transform: var(--heading-font-transform, initial);
+    color: var(--heading-color-text);
+    font-feature-settings: 'zero' on;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Logo
+.uk-logo {
+    font-weight: 700;
+    letter-spacing: var(--heading-font-spacing, normal);
+    text-transform: unset;
+    line-height: 1;
+    color: inherit;
+}
+
+// Typeface
+.uk-font {
+    &-primary {
+        font-family: var(--font-family-primary);
+    }
+    &-secondary {
+        font-family: var(--font-family-secondary);
+    }
+    &-condensed {
+        font-family: var(--font-family-condensed);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: .04rem !important;
+    }
+    &-serif {
+        font-family: var(--font-family-serif);
+    }
+    &-mono {
+        font-family: var(--font-family-mono);
+    }
+}
+
+// Horizontal Line
+.uk-hr, hr {
+    border-top-color: var(--border-color);
+}
+
+// Tooltip
+.uk-tooltip {
+    font-size: .875rem;
+    padding: 4px 8px;
+    border-radius: var(--radius);
+    background-color: var(--color-gray-90);
+}
+
+// Responsive Border
+@include border;
+
+// Radius
+@include radius;
+
+// Icons
+@include icon;
+
+// Overflow
+.uk-overflow-hidden {
+    &-horizontal {
+        overflow-x: hidden;
+    }
+    &-vertical {
+        overflow-y: hidden;
+    }
+}
+
+// SVG
+// .uk-svg,
+// .uk-svg:not(.uk-preserve) [fill*='#']:not(.uk-preserve) {
+//     fill-opacity: 1;
+// }
+
+// Heading line
+.uk-heading-line>::after,
+.uk-heading-line>::before {
+    top: calc(50% + 2px);
+}
+
+// Responsive Overflow
+@include make-responsive('.uk-overflow-unset') {
+    overflow: unset !important;
+}
+@include make-responsive('.uk-overflow-hide') {
+    overflow: hidden !important;
+}
+
+// Responsive Clip Path
+@include make-responsive('.uk-clip-left') {
+    clip-path: inset(0 -1000px 0 0) !important;
+}
+@include make-responsive('.uk-clip-right') {
+    clip-path: inset(0 1000px 0 0) !important;
+}
+
+// Opacity
+.uk-opacity {
+    @for $i from 0 to 11 {
+        &-#{$i * 10} {
+            opacity: $i * 0.1;
+        }
+    }
+}
+
+// Position
+.uk-position {
+    @include wrap-media() using ($bp) {
+        @each $name, $size in map.get($config, 'sizes', 'position') {
+            &-#{$name} {
+                margin: $size;
+            }
+        }
+    }
+}
+
+// Shadow
+[class*="uk-box-shadow"] {
+    @include dark-prop('--shadow-color', rgb(0 0 0 / 10%), rgb(0 0 0 / 60%));
+}
+.uk-box-shadow {
+    &-2xsmall {
+        box-shadow: 0px 2px 4px -1px var(--shadow-color);
+    }
+    &-xsmall {
+        box-shadow: 0px 3px 8px -1px var(--shadow-color);
+    }
+    &-small {
+        box-shadow: 0px 4px 16px -1px var(--shadow-color);
+    }
+    &-medium {
+        box-shadow: 0 5px 24px -1px var(--shadow-color);
+    }
+    &-large {
+        box-shadow: 0 6px 32px -1px var(--shadow-color);
+    }
+    &-xlarge {
+        box-shadow: 0 7px 48px -1px var(--shadow-color);
+    }
+    &-2xlarge {
+        box-shadow: 0 8px 64px -1px var(--shadow-color);
+    }
+}
+
+// Preloader
+.uni-preloader>.loading>div {
+    border-top-color: var(--color-primary);
+}
+
+// Screen Reader
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+// Code
+pre {
+    tab-size: 4;
+    overflow: auto;
+    padding: 25px;
+    color: inherit;
+    border: 0 solid #e5e5e5;
+    border-radius: 0;
+    background: #f8f8f8;
+}
+pre, :not(pre)>code, :not(pre)>kbd, :not(pre)>samp {
+    font-family: 'Operator Mono SSm', Menlo, Monaco, 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 24px;
+}
+:not(pre) > samp {
+    color: inherit;
+}
+.hljs {
+    display: block;
+    color: #333;
+    padding: 0;
+    background: none;
+}
+.hljs-comment, .hljs-meta {
+    color: #969896
+}
+.hljs-string, .hljs-variable, .hljs-template-variable, .hljs-strong, .hljs-emphasis, .hljs-quote {
+    color: #f0506e
+}
+.hljs-keyword, .hljs-selector-tag, .hljs-type {
+    color: #1f34aa
+}
+.hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute {
+    color: #0086b3
+}
+.hljs-section, .hljs-name {
+    color: #63a35c
+}
+.hljs-tag {
+    color: #333
+}
+.hljs-title, .hljs-attr, .hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo {
+    color: #795da3
+}
+.hljs-addition {
+    color: #55a532;
+    background-color: #eaffea
+}
+.hljs-deletion {
+    color: #bd2c00;
+    background-color: #ffecec
+}
+.hljs-link {
+    text-decoration: underline
+}
+.hljs-attribute, .hljs-doctag, .hljs-keyword, .hljs-meta-keyword, .hljs-name, .hljs-selector-tag {
+    font-weight: normal;
+}
+
+// Prevent Layout shift
+.uk-cover:not([style*="width:"]) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.swiper-container:not(.swiper-container-initialized) > * {
+    display: none;
+}

@@ -1,0 +1,201 @@
+@use "sass:map";
+
+// /* UIKit: Form */
+.uk-form {
+    &-button {
+        position: absolute !important;
+        background: none;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        @include dark-prop('color', var(--color-gray-50), var(--color-gray-40));
+    }
+    &-icon {
+        background: none;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        @include dark-prop('color', var(--color-gray-50), var(--color-gray-40));
+    }
+    &-label {
+        display: flex;
+        font-size: .875rem;
+        font-weight: 700;
+        text-transform: unset;
+        color: inherit;
+        margin-bottom: 10px;
+        @include dark-prop('color', var(--color-gray-100), white);
+    }
+}
+
+@mixin form-color() {
+    @include dark-props((
+        background-color: (rgb(0 0 0 / 5%), rgb(255 255 255 / 5%)),
+        color: (black, white),
+    ));
+}
+
+.uk-input,
+.uk-select:not([multiple]):not([size]),
+.uk-textarea,
+.uk-checkbox,
+.uk-radio {
+    font-family: var(--form-font-typeface);
+    font-size: var(--form-font-size);
+    font-weight: var(--form-font-weight);
+    letter-spacing: var(--form-font-spacing);
+    text-transform: var(--form-font-transform);
+    border: 0;
+    border-radius: var(--form-border-radius);
+    transition: 100ms ease-in-out;
+    @include form-color;
+    @include dark-prop('--inner-shadow', rgb(0 0 0 / 8%), rgb(255 255 255 / 8%));
+
+    &:hover {
+        box-shadow: inset 0 0 0 1px var(--inner-shadow);
+    }
+    &:focus {
+        @include dark-props((
+            --inner-shadow: (rgb(0 0 0 / 15%), rgb(255 255 255 / 15%)),
+            --outer-shadow: (rgb(0 0 0 / 3%), rgb(255 255 255 / 3%)),
+        ));
+        background-color: transparent !important;
+        box-shadow: inset 0 0 0 1px var(--inner-shadow), 0 0 0 4px var(--outer-shadow);
+    }
+    &::placeholder {
+        @include dark-prop('color', var(--color-gray-60), var(--color-gray-40));
+    }
+}
+
+.uk-input,
+.uk-select:not([multiple]):not([size]) {
+    height: var(--sizes-form-height);
+    padding: var(--sizes-form-padding);
+}
+
+.uk-checkbox {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 2px;
+    border-radius: 50%;
+    &:checked {
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: var(--color-primary) !important;
+    }
+}
+
+.uk-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    &:checked {
+        background-color: var(--color-primary) !important;
+    }
+}
+
+.uk-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    > input {
+        display: none;
+        &:checked + span {
+            background-color: var(--color-primary);
+            &:before {
+                -webkit-transform: translateX(20px);
+                -ms-transform: translateX(20px);
+                transform: translateX(20px);
+            }
+        }
+    }
+    > span {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 24px;
+        transition: 200ms;
+        @include dark-prop('background-color', rgb( 0 0 0 / 8% ), rgb( 255 255 255 / 8% ));
+        &:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            border-radius: 24px;
+            background-color: white;
+            -webkit-transition: 200ms;
+            transition: 200ms;
+        }
+    }
+
+}
+
+.uk-radio-button {
+    position: relative;
+    > input {
+        display: none;
+        &:checked + span {
+            border-color: var(--color-primary);
+        }
+    }
+    > span {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: stretch;
+        padding: 16px 16px 8px;
+        border-radius: var(--radius);
+        border: 2px solid;
+        min-height: 80px;
+        @include dark-prop('border-color', rgb( 0 0 0 / 8% ), rgb( 255 255 255 / 8% ));
+        > span {
+            font-size: .9rem;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+    }
+}
+
+.uk-input[type="datetime-local"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        -webkit-appearance: none;
+    }
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2224%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%201%209%206%2015%206%22%20%2F%3E%0A%20%20%20%20%3Cpolygon%20fill%3D%22%23666%22%20points%3D%2212%2013%209%208%2015%208%22%20%2F%3E%0A%3C%2Fsvg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+
+// Size Modifier
+@each $name, $size in map.get($config, 'sizes', 'form') {
+    @if $name != '' {
+        @include make-responsive('.uk-form-#{$name}') {
+            font-size: var(--sizes-form-#{$name}-text) !important;
+            height: var(--sizes-form-#{$name}-height) !important;
+            padding: var(--sizes-form-#{$name}-padding) !important;
+        }
+        .uk-form-icon {
+            position: absolute !important;
+            &:not(.uk-form-icon-flip)~.uk-input.uk-form-#{$name} {
+                padding-left: var(--sizes-form-#{$name}-height) !important;
+            }
+            &.uk-form-icon-flip~.uk-input.uk-form-#{$name} {
+                padding-right: var(--sizes-form-#{$name}-height) !important;
+            }
+            &.uk-form-#{$name} {
+                width: var(--sizes-form-#{$name}-height) !important;
+                padding: 0 !important;
+                line-height: initial !important;
+            }
+        }
+    }
+}

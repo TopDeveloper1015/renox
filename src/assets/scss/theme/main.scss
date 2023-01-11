@@ -1,0 +1,29 @@
+/*
+ * Table of content: Global
+ * ----------------------------------------
+ * 01. Common Helpers files (Do not edit any for updates.)
+ * 02. User Helpers files (A place for you to edit)
+ * 03. Core Framewoork (Do not edit any for updates.)
+ * 04. Template Ovrerides
+ * 05. Custom CSS (A place for you to edit)
+ */
+
+// 01. Import common files
+@import 'common/init';
+@import 'common/config';
+// @import 'common/demos-config/demo';
+
+// 02. Import custom user files
+@import 'custom/user-init';
+@import 'custom/user-config';
+// @import 'custom/demos-config/demo';
+
+// 03. Import our framework/core
+@import '../core/import';
+
+// 04. Import custom template files
+@import 'customizations/import';
+// @import 'customizations/demos/demo';
+
+// 05. Custom CSS
+@import 'custom/user';

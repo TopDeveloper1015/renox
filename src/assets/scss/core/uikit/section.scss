@@ -1,0 +1,16 @@
+@use 'sass:map';
+
+.uk-section-muted {
+    background-color: var(--color-light-50);
+}
+
+// Section
+@include wrap-media() using ($bp) {
+    // Size Modifier
+    @each $name, $size in map.get($config, 'sizes', 'section') {
+        .uk-section#{if($name != '', '-' + $name, '')}#{$bp} {
+            padding-top: var(--sizes-section#{if($name != '', '-' + $name, '')});
+            padding-bottom: var(--sizes-section#{if($name != '', '-' + $name, '')});
+        }
+    }
+}

@@ -1,0 +1,79 @@
+.uk-offcanvas {
+    --offcanvas-width: 100%;
+    --offcanvas-desktop-width: 370px;
+
+    &-close {
+        top: inherit;
+        right: inherit;
+        padding: 0;
+        cursor: pointer;
+        &:hover {
+            opacity: .6;
+        }
+    }
+    &-bar {
+        &-panel {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: calc( var(--offcanvas-width) * -1 );
+            box-sizing: border-box;
+            width: var(--offcanvas-width);
+            padding: 0;
+            background: #ffffff;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        &-animation {
+            transition: left 0.3s ease-out;
+        }
+        @media (min-width: 960px) {
+            &-panel {
+                left: calc(var(--offcanvas-desktop-width) * -1);
+                width: var(--offcanvas-desktop-width);
+                padding: 0;
+            }
+        }
+    }
+    &-flip {
+        .uk-offcanvas-bar-panel {
+            left: auto;
+            right: calc( var(--offcanvas-width) * -1 );
+        }
+        .uk-offcanvas-bar-animation {
+            transition-property: right;
+        }
+        .uk-open > .uk-offcanvas-bar-panel {
+            left: auto;
+            right: 0;
+        }
+        @media (min-width: 960px) {
+            .uk-offcanvas-bar-panel {
+                right: calc(var(--offcanvas-desktop-width) * -1);
+            }
+            &.uk-offcanvas-container-animation {
+                left: calc(var(--offcanvas-desktop-width) * -1);
+            }
+        }
+        .uk-offcanvas-reveal .uk-offcanvas-bar-panel {
+            left: auto;
+            right: 0;
+        }
+    }
+    &-reveal .uk-offcanvas-bar-panel {
+        left: 0;
+    }
+}
+.uk-open {
+    > .uk-offcanvas-bar-panel {
+        left: 0;
+    }
+    >.uk-offcanvas-reveal {
+        width: var(--offcanvas-width);
+    }
+    @media (min-width: 960px) {
+        >.uk-offcanvas-reveal {
+            width: var(--offcanvas-desktop-width);
+        }
+    }
+}

@@ -1,0 +1,10 @@
+.uk-list {
+    >* {
+        >* {
+            color: inherit;
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}

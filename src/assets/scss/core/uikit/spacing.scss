@@ -1,0 +1,63 @@
+@use "sass:map";
+
+// Spacing (padding and margin)
+$spacing: map.get($config, 'sizes', 'spacing');
+@each $spacing-suffix, $spacing-value in $spacing {
+    @each $rule in margin, padding {
+        @each $location-suffix in ("", "-top", "-right", "-left", "-bottom") {
+            @if $spacing-suffix != '' {
+                @include make-responsive('.uk-#{$rule}-#{$spacing-suffix}#{$location-suffix}') {
+                    @include location-suffix-spacing($rule, $location-suffix, var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important);
+                }
+            } @else {
+                @include make-responsive('.uk-#{$rule}#{$location-suffix}') {
+                    @include location-suffix-spacing($rule, $location-suffix, var(--sizes-spacing) !important);
+                }
+            }
+        }
+        @each $location-suffix in ("horizontal", "vertical") {
+            @if $spacing-suffix != '' and $spacing-suffix != 'remove' {
+                @if $location-suffix != 'horizontal' {
+                    @include make-responsive('.uk-#{$rule}-#{$spacing-suffix}-#{$location-suffix}', 'max') {
+                        #{$rule}-left: var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important;
+                        #{$rule}-right: var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important;
+                    }
+                } @else {
+                    @include make-responsive('.uk-#{$rule}-#{$spacing-suffix}-#{$location-suffix}', 'max') {
+                        #{$rule}-top: var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important;
+                        #{$rule}-bottom: var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important;
+                    }
+                }
+            }
+        }
+    }
+    @include make-responsive('*+.uk-margin#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}') {
+        margin-top: var(--sizes-spacing#{if($spacing-suffix != '', '-' + $spacing-suffix, '')}) !important;
+    }
+}
+
+// Padding Remove Both Positions
+@include make-responsive('.uk-padding-remove-horizontal', 'max') {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+@include make-responsive('.uk-padding-remove-vertical', 'max') {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+// Spacing Offset
+$offset: map.get($config, 'sizes', 'offset');
+@each $offset-suffix, $offset-value in $offset {
+    @each $location-suffix in ("", "-left", "-right") {
+        @if $offset-suffix != '' {
+            @include make-responsive('.uk-offset-#{$offset-suffix}#{$location-suffix}', 'max') {
+                @include location-suffix-offset($location-suffix, var(--sizes-offset#{if($offset-suffix != '', '-' + $offset-suffix, '')}) !important);
+            }
+        } @else {
+            @include make-responsive('.uk-offset#{$location-suffix}', 'max') {
+                @include location-suffix-offset($location-suffix, var(--sizes-offset) !important);
+            }
+        }
+    }
+}

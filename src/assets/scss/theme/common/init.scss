@@ -1,0 +1,41 @@
+// Template init
+// Please do not edit cause you may lose your changes after the next update!
+
+// Swiper
+@import 'https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css';
+
+// UIkit
+@import 'https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css';
+
+// Material icons
+@import 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap';
+
+// Google font
+// @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+// Local fonts
+@import '../../css/fonts.css';
+@import '../../css/brand-icons.css';
+
+// Fix material icons layout shift
+.material-icons {
+    &, &-outlined, &-round, &-sharp, &-two-tone {
+        width: 1em;
+        height: 1em;
+        overflow: hidden;
+    }
+}
+:root:not(.dom-ready) {
+    // Prevent initial transition
+    *, *::before, *::after {
+        transition: none !important;
+    }
+    // Reset Fix material icons layout shift
+    .material-icons {
+        &, &-outlined, &-round, &-sharp, &-two-tone {
+            width: auto;
+            height: auto;
+            overflow: auto;
+        }
+    }
+}

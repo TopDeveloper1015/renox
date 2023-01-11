@@ -1,0 +1,40 @@
+@use "sass:map";
+
+/* UIKit: Text */
+
+@mixin text-color-modifier {
+    @each $name, $color in map.get($config, 'colors', 'text') {
+        @if $name != "muted" {
+            &#{if($name != '', '-' + $name, '')} {
+                color: var(--colors-text-#{$name}) !important;
+            }
+        }
+    }
+}
+
+.uk-text {
+    &-inherit {
+        color: inherit;
+    }
+    &-gradient {
+        @include gradient();
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &-muted,
+    &-meta {
+        @include dark-prop('color', var(--color-gray-70) !important, var(--color-gray-40) !important);
+    }
+    &-lead {
+        @include dark-prop('color', black !important, white !important);
+    }
+    &-vertical {
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+    }
+    &-spacing {
+        letter-spacing: 1px;
+    }
+    @include text-color-modifier;
+}

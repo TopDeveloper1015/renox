@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+// Heading
+@include wrap-media() using ($bp) {
+    @each $level, $value in map.get($config, 'sizes', 'heading') {
+        .uk-#{if($level == 'hero', 'heading-' + $level, $level)}#{$bp} {
+            @include font-props('heading-' + $level);
+        }
+        *+.uk-#{if($level == 'hero', 'heading-' + $level, $level)}#{$bp} {
+            margin-top: 20px;
+        }
+    }
+
+    .uk-text {
+        @include text-size-modifier($bp);
+        @include text-weight-modifier($bp);
+    }
+}

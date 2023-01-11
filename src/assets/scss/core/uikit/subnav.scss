@@ -1,0 +1,71 @@
+@use 'sass:map';
+
+$subnav_default: map.get($config, 'sizes', 'subnav', '') !default;
+.uk-subnav {
+    line-height: 1;
+    margin: calc(var(--sizes-subnav) / 2 * -1) calc(var(--sizes-subnav) * -1) !important;
+    >* {
+        display: inline-flex;
+        align-items: center;
+        color: inherit;
+        padding: calc(var(--sizes-subnav) / 2) var(--sizes-subnav) !important;
+        margin: 0 !important;
+        >:first-child {
+            font-size: var(--subnav-font-size, inherit);
+            font-weight: var(--subnav-font-weight, inherit);
+            text-transform: var(--subnav-font-transform, inherit);
+            color: inherit;
+        }
+    }
+    &-dot > li+li {
+        position: relative;
+        &::before {
+            content: '.';
+            position: absolute;
+            left: 0;
+            transform: translateX(-50%);
+        }
+    }
+    &-pill {
+        >*{
+            > a{
+                background: none !important;
+                font-weight: 500!important;
+                border-radius: var(--radius);
+                color: var(--color-gray-70) !important;
+            }
+            &:hover>a{
+                color: var(--color-gray-100) !important;
+            }
+            &.uk-active>a {
+                background-color: var(--color-primary) !important;
+                color: white !important;
+            }
+        }
+    }
+    &-divider>::before {
+        margin-right: calc(var(--sizes-subnav) / 2);
+    }
+}
+
+// Subnav
+@include wrap-media() using ($bp) {
+    // Size Modifier
+    @each $name, $size in map.get($config, 'sizes', 'subnav') {
+        @if $name != '' {
+            .uk-subnav-#{$name}#{$bp} {
+                margin: calc(var(--sizes-subnav-#{$name}) / 2 * -1) calc(var(--sizes-subnav-#{$name}) * -1) !important;
+                >* {
+                    padding: calc(var(--sizes-subnav-#{$name}) / 2) var(--sizes-subnav-#{$name}) !important;
+                }
+            }
+        }
+    }
+}
+
+.uk-dark {
+    .uk-subnav>*>a:hover,
+    .uk-subnav>.uk-active>a {
+        color: var(--color-gray-10);
+    }
+}

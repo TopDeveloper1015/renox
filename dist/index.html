@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zxx" class="uk-background-white dark:uk-background-gray-100 dark:uk-text-gray-40">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Renox Template</title>
+        <meta name="description" content="description...">
+        <meta name="theme-color" content="#0066ff">
+
+        <!-- preload head styles -->
+        <link rel="preload" href="assets/fonts/gt-walsheim/gt-walsheim-light.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="assets/fonts/gt-walsheim/gt-walsheim-regular.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="assets/fonts/gt-walsheim/gt-walsheim-medium.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="assets/fonts/gt-walsheim/gt-walsheim-bold.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="assets/fonts/brand-icons/brand-icons.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" as="style">
+        <link rel="preload" href="assets/css/theme/main.min.css" as="style">
+
+        <!-- preload footer scripts -->
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js" as="script">
+        <link rel="preload" href="assets/js/uikit-components.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" as="script">
+        <link rel="preload" href="assets/js/app.js" as="script">
+        <link rel="preload" href="assets/js/swiper-helper.js" as="script">
+        <link rel="preload" href="assets/js/typed-helper.js" as="script">
+        <link rel="preload" href="assets/js/anime-helper.js" as="script">
+        <link rel="preload" href="assets/js/anime-helper-defined-timelines.js" as="script">
+
+        <!-- include styles -->
+        <script src="assets/js/app-head.js"></script>
+        <link rel="stylesheet" href="assets/css/theme/main.min.css">
+
+        <!-- include scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
+        <script src="assets/js/uikit-components.js"></script>
+        <style>
+            .darkmode-trigger {
+                position: fixed !important;
+                top: auto;
+                bottom: 0;
+            }
+            .uk-image-circle {
+                position: absolute;
+                top: 20%;
+                left: 20%;
+                width: 32px;
+                height: 32px;
+                background-image: linear-gradient(45deg, #ff3ba7, #e91e63);
+                box-shadow: inset 0 0 10px 0 rgb(255 255 255 / 50%);
+                border-radius: 100%;
+                filter: blur(1pc);
+                transform: scale(10);
+                z-index: 0;
+            }
+            .uk-image-circle.two {
+                top: 65%;
+                left: 15%;
+                width: 24px;
+                height: 24px;
+                background-image: linear-gradient(45deg, #3bb1ff, #e91e63);
+            }
+            .uk-image-circle.three {
+                top: 25%;
+                left: 70%;
+                width: 28px;
+                height: 28px;
+                background-image: linear-gradient(45deg, #3bb1ff, #4128ad);
+            }
+            .uk-image-circle.four {
+                top: 80%;
+                left: 80%;
+                width: 16px;
+                height: 16px;
+                background-image: linear-gradient(45deg, #ff933b, #871ee9);
+            }
+            .uk-circle-gradient {
+                display: inline-block;
+                width: 400px;
+                height: 400px;
+                background-image: radial-gradient(#ffeb3b, #e91e63);
+                position: relative;
+                border-radius: 100%;
+                filter: blur(8pc);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                opacity: 0.75;
+            }
+            .uk-circle-gradient.two {
+                top: 50%;
+                left: 40%;
+            }
+            .scroll-animate {
+                animation: pulse 1s ease-in-out 0s infinite alternate;
+            }
+            @keyframes pulse {
+                0% {
+                    transform: translateY(-10px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(10px);
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Dark/Light toggle -->
+        <div class="darkmode-trigger uk-text-normal uk-position-top-right uk-position-small" data-darkmode-toggle="">
+            <label class="switch">
+                <span class="sr-only">Dark mode toggle</span>
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Menu modal -->
+        <div id="uni_mobile_menu" class="uni-mobile-menu uk-offcanvas" data-uk-offcanvas="mode: push; overlay: true; flip: true; selPanel: .uk-offcanvas-bar-panel;">
+            <div class="uk-offcanvas-bar-panel uk-panel dark:uk-background-gray-100">
+                <div class="uni-mobile-menu-wrap uk-flex-column uk-flex-between" data-uk-height-viewport="offset-bottom: true;">
+                    <div class="uni-mobile-menu-content">
+                        <header class="uk-card uk-card-2xsmall uk-flex-middle uk-flex-between">
+                            <div class="uk-flex-1">
+                                <button aria-label="Close Menu" class="uk-offcanvas-close uk-button uk-button-small uk-button-icon uk-button-default uk-button-outline uk-radius-circle" type="button">
+                                    <i class="uk-icon-small" data-feather="arrow-left"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <h5 class="uk-h5 uk-margin-remove">Navigation</h5>
+                            </div>
+                            <div class="uk-flex-1"></div>
+                        </header>
+                        <hr class="uk-margin-remove">
+                        <div class="uk-card uk-card-small">
+                            <div class="uk-panel uk-margin">
+                                <form class="search-form uk-inline uk-width-1-1@m" action="./search-ajax.html" method="get">
+                                    <span class="uk-form-icon">
+                                        <i class="uk-icon-small" data-feather="search"></i>
+                                    </span>
+                                    <input type="search" name="s" autocomplete="off" class="uk-input uk-form-small" placeholder="Search item or artist..">
+                                    <button aria-label="Clear Search Input" type="button" class="search-clear uk-form-icon uk-form-icon-flip uk-hidden">
+                                        <i class="uk-icon-xsmall" data-feather="x"></i>
+                                    </button>
+                                    <div class="search-results uk-card uk-card-small uk-card-default uk-width-medium@m uk-height-large@m uk-margin-small-top uk-overflow-auto uk-position-absolute uk-position-z-index uk-radius uk-hidden dark:uk-background-gray-90">
+                                        <div class="search-results-content uk-panel uk-hidden"></div>
+                                        <div class="search-results-loading uk-flex-center uk-flex-middle uk-height-1-1">
+                                            <span class="uk-flex-center uk-flex-middle" data-uk-spinner="ratio: .8"></span>
+                                        </div>
+                                    </div>
+                                    <noscript>
+                                        <button aria-label="Submit" type="submit" class="uk-form-icon uk-form-icon-flip">
+                                            <i class="uk-icon-xsmall" data-feather="search"></i>
+                                        </button>
+                                    </noscript>
+                                </form>
+                            </div>
+                            <div class="uk-panel">
+                                <ul class="uk-nav uk-nav-default">
+                                    <li class="uk-nav-header">Main pages</li>
+                                    <li>
+                                        <a href="main/index.html"><i class="uk-icon-xsmall" data-feather="home"></i> Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/explore.html"><i class="uk-icon-xsmall" data-feather="compass"></i> Explore</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/activity.html"><i class="uk-icon-xsmall" data-feather="activity"></i> Actvity</a>
+                                    </li>
+                                    <li class="uk-nav-header">Community</li>
+                                    <li>
+                                        <a href="main/blog.html"><i class="uk-icon-xsmall" data-feather="book-open"></i> Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/help-center.html"><i class="uk-icon-xsmall" data-feather="help-circle"></i> Help center</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/contact.html"><i class="uk-icon-xsmall" data-feather="send"></i> Contact</a>
+                                    </li>
+                                    <li class="uk-nav-header">Inner pages</li>
+                                    <li>
+                                        <a href="main/create.html"><i class="uk-icon-xsmall" data-feather="plus-circle"></i> Create</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/author.html"><i class="uk-icon-xsmall" data-feather="user"></i> Author</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/authors.html"><i class="uk-icon-xsmall" data-feather="users"></i> Authors</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/collections.html"><i class="uk-icon-xsmall" data-feather="layers"></i> Collection</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/base.html"><i class="uk-icon-xsmall" data-feather="box"></i> Base components</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/404.html"><i class="uk-icon-xsmall" data-feather="x-circle"></i> 404 page</a>
+                                    </li>
+                                    <li class="uk-nav-header">Account</li>
+                                    <li>
+                                        <a href="main/sign-in.html"><i class="uk-icon-xsmall" data-feather="log-in"></i> Sign in</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/sign-up.html"><i class="uk-icon-xsmall" data-feather="user"></i> Sign up</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/reset-password.html"><i class="uk-icon-xsmall" data-feather="lock"></i> Reset password</a>
+                                    </li>
+                                    <li class="uk-nav-header">Content &amp; Privacy</li>
+                                    <li>
+                                        <a href="main/#"><i class="uk-icon-xsmall" data-feather="file-text"></i> Terms of use</a>
+                                    </li>
+                                    <li>
+                                        <a href="main/#"><i class="uk-icon-xsmall" data-feather="file-text"></i> Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Creation modals -->
+
+        <!-- Share modal -->
+        <div id="share_this" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-text-center uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <h3 class="uk-h4">Share this!</h3>
+                <div class="uni-modal-share-icons uk-grid uk-child-width-expand uk-flex-center" data-uk-grid>
+                    <div>
+                        <a href="https://twitter.com/intent/tweet?url=#link&text=title" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-twitter"></i></div>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=#link" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-facebook"></i></div>
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=#link" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-linkedin"></i></div>
+                            <span>Linkedin</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="main/mailto:someone@yoursite.com?subject=title">
+                            <div><i class="uk-icon-small material-icons">mail</i></div>
+                            <span>E-mail</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Send Report modal -->
+        <div id="send_report" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="main/#report">Report</a></li>
+                        <li><a href="main/#report_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4">Why are you reporting?</h3>
+                                <p class="uk-text-muted">Describe why you think this item should be removed from marketplace.</p>
+                                <div class="uk-form-stack uk-grid-xsmall uk-child-width-1-1 uk-grid" data-uk-grid>
+                                    <div class="uk-form-group">
+                                        <span class="uk-text-bold">Your message:</span>
+                                        <textarea class="uk-input uk-height-xsmall uk-margin-xsmall-top" placeholder="Tell us some details.."></textarea>
+                                    </div>
+                                    <div class="uk-form-group">
+                                        <button type="button" class="uk-button uk-button-medium uk-button-danger uk-width-1-1" data-uk-switcher-item="next">Send report</button>
+                                        <button type="button" class="uk-button uk-button-medium uk-button-default uk-button-alt uk-width-1-1 uk-margin-xsmall-top uk-modal-close">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-lead">We have received your report!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline uk-margin-xsmall-top" data-uk-switcher-item="previous">Submit another report</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Place a bid modal -->
+        <div id="place_bid" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="main/#switcher_wallet">Connect wallet</a></li>
+                        <li><a href="main/#switcher_place_bid">Place a bid</a></li>
+                        <li><a href="main/#switcher_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m">Sign in with your wallet</h3>
+                                <p class="uk-text-muted">Sign in with one of available wallet providers or create a new wallet.</p>
+                                <div data-uk-margin="margin: uk-margin-xsmall-top">
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/torus.svg" alt="torus" data-uk-svg loading="lazy"> </span>
+                                        <b>Torus</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/metamask.svg" alt="metamask" data-uk-svg loading="lazy"> </span>
+                                        <b>Metamask</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/coinbase.svg" alt="coinbase" data-uk-svg loading="lazy"> </span>
+                                        <b>Coinbase</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/walletconnect.svg" alt="walletconnect" data-uk-svg loading="lazy"> </span>
+                                        <b>Mobile Wallet</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m uk-flex-middle">
+                                    <a href="main/#wallet" class="uk-button uk-button-xsmall uk-button-default uk-button-outline uk-button-icon uk-radius-circle uk-margin-small-right" data-uk-switcher-item="previous"><i class="uk-icon-small material-icons">arrow_backward</i></a>
+                                    <span>Place a bid</span>
+                                </h3>
+                                <p class="uk-text-muted">
+                                    You are about to purchase <b class="uk-text-gray-100 dark:uk-text-white">Metaverse Game</b> from <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="main/author.html">@TheSalvare</a> </b>
+                                </p>
+                                <div data-uk-margin>
+                                    <div class="uk-form-group">
+                                        <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                            <div class="uk-width-expand">Enter your bid</div>
+                                            <div><input type="text" class="uk-form-blank uk-width-2xsmall uk-text-medium uk-text-right dark:uk-text-white" value="1.62"> ETH</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="uk-form-group">
+                                        <div data-uk-margin="margin: uk-margin-2xsmall-top">
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Your balance</div>
+                                                    <div>2.75 ETH</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Service fee</div>
+                                                    <div>0.05 ETH</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-text-bold uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Total bid amount</div>
+                                                    <div>1.67 ETH</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-form-group uk-margin-medium-top">
+                                    <button type="button" class="uk-button uk-button-medium uk-button-gradient uk-width-1-1" data-uk-switcher-item="next">Place a bid</button>
+                                    <button type="button" class="uk-button uk-button-medium uk-button-default uk-button-alt uk-width-1-1 uk-margin-xsmall-top uk-modal-close">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-xlarge">Your bid has been successfully placed!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline" data-uk-switcher-item="previous">Place another bid</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect wallet modal -->
+        <div id="connect_wallet" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="main/#switcher_wallet">Connect wallet</a></li>
+                        <li><a href="main/#wallet_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m">Sign in with your wallet</h3>
+                                <div data-uk-margin="margin: uk-margin-xsmall-top">
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/torus.svg" alt="torus" data-uk-svg loading="lazy"> </span>
+                                        <b>Torus</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/metamask.svg" alt="metamask" data-uk-svg loading="lazy"> </span>
+                                        <b>Metamask</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/coinbase.svg" alt="coinbase" data-uk-svg loading="lazy"> </span>
+                                        <b>Coinbase</b>
+                                    </a>
+                                    <a href="main/#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="assets/images/other/walletconnect.svg" alt="walletconnect" data-uk-svg loading="lazy"> </span>
+                                        <b>Mobile Wallet</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-xlarge">Your purchase has been completed!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline uk-modal-close">Close</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- User login modal -->
+        <div id="uni_user_login_modal" class="uk-modal-full uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog dark:uk-background-gray-100 dark:uk-text-gray-30">
+                <div class="uk-modal-close-full uk-position-small">
+                    <button aria-label="Close" class="uk-button uk-button-small uk-button-icon uk-button-danger uk-button-outline uk-radius-circle" type="button">
+                        <i class="uk-icon-small uk-text-unset" data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="uk-container uk-container-xsmall">
+                    <div class="uk-section uk-width-medium@m uk-margin-auto uk-flex-column uk-flex-center" data-uk-height-viewport="">
+                        <div class="uk-card uk-panel">
+                            <ul class="uk-subnav uk-h2" data-uk-switcher="animation: uk-animation-slide-bottom-small, uk-animation-slide-top-small" hidden>
+                                <li><a href="main/#login">Log in</a></li>
+                                <li><a href="main/#register">Register</a></li>
+                                <li><a href="main/#forgot_password">Forgot Password</a></li>
+                            </ul>
+                            <ul class="uk-switcher uk-margin">
+                                <li>
+                                    <form class="uni-login-form uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Sign in</h3>
+                                        <div class="uk-margin">
+                                            <label for="email-login" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-login" type="email" name="email" autocomplete="email" class="uk-input" value="user@example.com" required>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <label for="password-login" class="uk-form-label">Your password: <span class="uk-text-danger">*</span></label>
+                                            <input id="password-login" type="password" name="current-password" autocomplete="current-password" class="uk-input" value="12345678" required>
+                                        </div>
+                                        <div class="uk-margin uk-grid uk-flex-between uk-flex-middle" data-uk-grid>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <input id="remember-login" type="checkbox" name="remember" class="uk-checkbox" checked>
+                                                <label for="remember-login" class="uk-form-label uk-margin-xsmall-left">Remember me?</label>
+                                            </div>
+                                            <div>
+                                                <a href="main/#user_reset_password" class="uk-link-line uk-text-small uk-text-bold" data-uk-switcher-item="2">
+                                                    <span>Forgot password</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Log in</button>
+                                        </div>
+                                        <div class="uk-grid uk-grid-xsmall uk-flex-center uk-text-xlarge uk-margin-medium-top@m" data-uk-grid>
+                                            <a aria-label="facebook" href="main/#facebook"><i class="brand-facebook-alt"></i></a>
+                                            <a aria-label="google" href="main/#google"><i class="brand-google"></i></a>
+                                            <a aria-label="twitter" href="main/#twitter"><i class="brand-twitter"></i></a>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        Don't have an account? <a href="main/#user_sign_up" class="uk-link-line" data-uk-switcher-item="1"><span>Sign up</span></a>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <form class="uni-signup-form uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Create an account</h3>
+                                        <div class="uk-margin">
+                                            <label for="name-signup" class="uk-form-label">Your name:</label>
+                                            <input id="name-signup" type="text" name="name" autocomplete="name" class="uk-input" value="thesalvare">
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <label for="email-signup" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-signup" type="email" name="email" autocomplete="email" class="uk-input" value="user@example.com" required>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <label for="password-signup" class="uk-form-label">Your password: <span class="uk-text-danger">*</span></label>
+                                            <input id="password-signup" type="password" name="new-password" autocomplete="new-password" class="uk-input" value="12345678" required>
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Sign up</button>
+                                        </div>
+                                        <div class="uk-grid uk-grid-xsmall uk-flex-center uk-text-xlarge uk-margin-medium-top@m" data-uk-grid>
+                                            <a aria-label="facebook" href="main/#facebook"><i class="brand-facebook-alt"></i></a>
+                                            <a aria-label="google" href="main/#google"><i class="brand-google"></i></a>
+                                            <a aria-label="twitter" href="main/#twitter"><i class="brand-twitter"></i></a>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        You already have an account? <a href="main/#user_login" class="uk-link-line" data-uk-switcher-item="0"><span>Log in</span></a>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <form class="uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Forgot password?</h3>
+                                        <div class="uk-margin">
+                                            <label for="email-reset" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-reset" type="email" name="email" class="uk-input" required>
+                                        </div>
+                                        <div class="uk-margin-top">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Reset my password</button>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        Did you remember your password? <a href="main/#user_login" class="uk-link-line" data-uk-switcher-item="0"><span>Log in</span></a>.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div id="overview" class="uk-panel uk-overflow-hidden">
+                <img loading="eager" src="assets/images/demo/hero.jpg" alt="Hero Image" class="uk-cover" data-uk-cover>
+                <div class="uk-position-cover uk-background-black-60"></div>
+
+                <div class="uk-position-cover" style="background-image: linear-gradient(to bottom, transparent 0%, var(--color-tertiary-100) 90%)"></div>
+
+                <div class="uk-image-circle one"></div>
+                <div class="uk-image-circle two"></div>
+                <div class="uk-image-circle three"></div>
+                <div class="uk-image-circle four"></div>
+
+                <header class="uni-header uk-position-relative uk-position-z-index">
+                    <div class="uni-header-navbar">
+                        <div class="uk-container uk-container-large">
+                            <nav class="uk-navbar uk-navbar-container uk-navbar-transparent" data-uk-navbar="">
+                                <div class="uk-navbar-top">
+                                    <div class="uk-navbar-left uk-flex-1">
+                                        <a href="index.html" class="uk-logo uk-navbar-item uk-h4 uk-h3@s uk-margin-remove"> <img loading="eager" width="140" height="39" src="assets/images/logo_light.svg" alt="Renox"> </a>
+                                    </div>
+                                    <div class="uk-navbar-center uk-dark dark:uk-text-white-70">
+                                        <ul class="uk-navbar-nav dark:uk-text-gray-10 uk-visible@s" data-uk-scrollspy-nav="closest: li; scroll: true;">
+                                            <li><a href="#overview">Overview</a></li>
+                                            <li><a href="#pages">Pages</a></li>
+                                            <li><a href="#features">Features</a></li>
+                                            <li><a href="#support">Support</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="uk-navbar-right uk-flex-right uk-flex-1">
+                                        <div class="uk-navbar-item">
+                                            <a href="#purchase_link" class="uk-button uk-button-xsmall uk-button-small@s uk-button-gradient uk-margin-left">Download <span class="uk-margin-2xsmall-left uk-visible@s"> now</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Hero -->
+                <div class="uk-container uk-container-xsmall">
+                    <div class="uk-section uk-panel uk-flex-center uk-flex-middle uk-dark dark:uk-text-white" data-uk-height-viewport="media: @s; offset-top: true;">
+                        <div class="uk-panel uk-position-z-index uk-text-center">
+                            <div class="uk-padding-xsmall uk-radius uk-inline-flex uk-background-black-30">
+                                <h1 class="uk-h3 uk-h1@s uk-margin-remove uk-text-gradient" style="background-image: linear-gradient(45deg, #f6bf75, #d77185, #8766ac, #4150b1)">NFT Marketplace</h1>
+                            </div>
+                            <div class="uk-padding-xsmall uk-radius uk-inline-flex uk-background-black-30 uk-margin-xsmall-top">
+                                <h1 class="uk-h5 uk-h1@s uk-margin-remove dark:uk-text-white">HTML5 Website Template</h1>
+                            </div>
+                            <p class="uk-text-2xlarge uk-margin-medium-top@s uk-visible@s">
+                                The most complete template package for NFTs marketplace, <br class="uk-visible@m">
+                                crypto-collectibles, digital items and non-fungible tokens websites.
+                            </p>
+                            <div class="uk-grid-medium uk-margin-medium-top uk-flex-center uk-grid" data-uk-grid="">
+                                <div>
+                                    <h5 class="uk-h4 uk-h1@s uk-margin-remove uk-text-gradient">30+</h5>
+                                    <span class="uk-text-xlarge@s">Ready Pages</span>
+                                </div>
+                                <div>
+                                    <h5 class="uk-h4 uk-h1@s uk-margin-remove uk-text-secondary">70+</h5>
+                                    <span class="uk-text-xlarge@s">UI Elements</span>
+                                </div>
+                            </div>
+                            <div class="uk-padding-small uk-radius uk-inline-flex uk-background-white-5 uk-margin-large-top@s uk-visible@s">
+                                <div class="uk-grid-medium uk-grid" data-uk-grid="">
+                                    <div>
+                                        <img class="uk-icon-medium@s" src="assets/images/demo/icons/uikit.svg" alt="UIkit logo" loading="lazy">
+                                    </div>
+                                    <div>
+                                        <img class="uk-icon-medium@s" src="assets/images/demo/icons/sass.svg" alt="SASS logo" loading="lazy">
+                                    </div>
+                                    <div>
+                                        <img class="uk-icon-medium@s" src="assets/images/demo/icons/nodejs.svg" alt="NodeJS logo" loading="lazy">
+                                    </div>
+                                    <div>
+                                        <img class="uk-icon-medium@s" src="assets/images/demo/icons/html5.svg" alt="HTML5 logo" loading="lazy">
+                                    </div>
+                                    <div>
+                                        <img class="uk-icon-medium@s" src="assets/images/demo/icons/css3.svg" alt="CSS3 logo" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-position-bottom uk-margin-large-bottom uk-flex-center uk-text-white uk-visible@s">
+                    <a href="#pages" class="scroll-animate uk-link-reset" data-uk-scroll="">
+                        <span class="uk-icon-medium@s material-icons">keyboard_arrow_down</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pages -->
+            <div id="pages" class="uk-section uk-section-xlarge@s">
+                <div class="uk-container">
+                    <header class="uk-text-center">
+                        <h3 class="uk-h4 uk-h2@s">Template Pages</h3>
+                    </header>
+                    <div class="uk-grid-2xsmall uk-grid-medium@s uk-grid-row-small uk-grid-row-large@s uk-child-width-1-3@s uk-text-center uk-margin-medium-top uk-margin-xlarge-top@s uk-grid" data-uk-grid="masonry: true;">
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/home.jpg" alt="homepage" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/inndex.html" class="uk-position-cover" aria-label="homepage"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Main page</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/explore-01.jpg" alt="explore one" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/explore.html" class="uk-position-cover" aria-label="explore one"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Explore - Full width</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/explore-02.jpg" alt="explore two" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/explore-sidebar.html" class="uk-position-cover" aria-label="explore two"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Explore - Left sidebar</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/item-details.jpg" alt="item details" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/item-details.html" class="uk-position-cover" aria-label="item details"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Item details</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/activity.jpg" alt="activity" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/activity.html" class="uk-position-cover" aria-label="activity"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Activity</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/create.jpg" alt="create" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/create.html" class="uk-position-cover" aria-label="create"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Create</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/create-single.jpg" alt="create single" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/create-single.html" class="uk-position-cover" aria-label="create single"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Create - Single</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/create-multiple.jpg" alt="create multiple" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/create-multiple.html" class="uk-position-cover" aria-label="create multiple"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Create - Multiple</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/connect-wallet.jpg" alt="connect wallet" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/connect-wallet.html" class="uk-position-cover" aria-label="connect wallet"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Connect wallet</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/collections.jpg" alt="collections" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/collections.html" class="uk-position-cover" aria-label="collections"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Collections</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/authors.jpg" alt="authors" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/authors.html" class="uk-position-cover" aria-label="authors"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Authors</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/author.jpg" alt="author profile" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/author.html" class="uk-position-cover" aria-label="author profile"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Author profile</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/blog.jpg" alt="blog" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/blog.html" class="uk-position-cover" aria-label="blog"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Blog</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/blog-category.jpg" alt="blog category" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/blog-category.html" class="uk-position-cover" aria-label="blog category"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Blog - Category</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/blog-author.jpg" alt="blog author" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/blog-author.html" class="uk-position-cover" aria-label="blog author"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Blog - Author</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/blog-single.jpg" alt="blog single" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/blog-single.html" class="uk-position-cover" aria-label="blog single"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Blog - Single</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/help-center.jpg" alt="help center" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/help-center.html" class="uk-position-cover" aria-label="help center"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Help center</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/contact.jpg" alt="contact" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/contact.html" class="uk-position-cover" aria-label="contact"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Contact</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/sign-in.jpg" alt="sign in" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/sign-in.html" class="uk-position-cover" aria-label="sign in"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Sign in</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/sign-up.jpg" alt="sign up" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/sign-up.html" class="uk-position-cover" aria-label="sign up"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Sign up</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/reset-password.jpg" alt="reset password" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/reset-password.html" class="uk-position-cover" aria-label="reset password"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Reset password</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/404.jpg" alt="error 404" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/404.html" class="uk-position-cover" aria-label="error 404"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Error 404</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/coming-soon.jpg" alt="coming soon" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/coming-soon.html" class="uk-position-cover" aria-label="coming soon"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Launch page</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/terms.jpg" alt="terms of use" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/terms.html" class="uk-position-cover" aria-label="terms of use"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Terms of use</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/privacy.jpg" alt="privacy policy" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/privacy.html" class="uk-position-cover" aria-label="privacy policy"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s">Privacy policy</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/more.jpg" alt="More" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/#" class="uk-position-cover" aria-label="More"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s"></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel">
+                                <div class="uk-panel uk-overflow-hidden uk-radius uk-box-shadow-xsmall uk-box-shadow-hover-large"><img src="assets/images/demo/more.jpg" alt="More" width="380" height="208" class="uk-width-1-1" loading="lazy"> <a href="main/#" class="uk-position-cover" aria-label="More"></a></div>
+                                <p class="uk-text-xlarge@s uk-text-bold uk-margin-small-top uk-margin-top@s"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div id="features" class="uk-section uk-section-xlarge@s uk-panel uk-overflow-hidden uk-background-black-5 dark:uk-background-white-5">
+                <div class="uk-container">
+                    <header class="uk-text-center">
+                        <h3 class="uk-h4 uk-h2@s">Template Features</h3>
+                    </header>
+                    <div class="uk-grid-xsmall uk-grid@s uk-child-width-1-3@s uk-margin-medium-top uk-margin-xlarge-top@s uk-grid" data-uk-grid="masonry: true;">
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">design_services</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Pixel-Perfect Design</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">view_carousel</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">30+ Ready Pages</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">layers</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">70+ UI Elements</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">devices</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Fully Responsive</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">dashboard</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Modern Layouts</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">dark_mode</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Dark Mode Supported</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">explore</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Browser Compatibility</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">tune</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Easy to customize</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">view_week</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Flexibility</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">travel_explore</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">SEO Optimized</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">bolt</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">A+ Fast loading</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">manage_search</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">AJAX search</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">visibility</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Retina Ready</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">insert_emoticon</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Material Design Icons</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">history_edu</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Feather Icons</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">settings_overscan</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Interactive modals</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">integration_instructions</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Built With SaSS</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">dashboard_customize</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Based on UIKit 3</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">task</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Well Documented</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">check_circle</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">W3C Valid Code</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">code</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Code Quality</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">developer_mode</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Developer Friendly</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">support_agent</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Premuim Support</h5>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="uk-panel uk-card uk-card-small uk-card-default uk-radius uk-flex-middle dark:uk-background-white-5">
+                                <span class="uk-icon-medium@s uk-text-gradient material-icons">update</span>
+                                <h5 class="uk-h6 uk-h5@s uk-margin-remove-top uk-margin-small-left">Frequent Updates</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer" class="uk-section uk-section-xlarge@s uk-panel uk-overflow-hidden uk-dark uk-text-white">
+                <img src="assets/images/demo/hero.jpg" alt="Hero Image" class="uk-cover" data-uk-cover loading="lazy">
+                <div class="uk-position-cover uk-background-black-60"></div>
+
+                <div class="uk-position-cover" style="background-image: linear-gradient(to top, transparent 0%, var(--color-tertiary-100) 90%)"></div>
+
+                <div class="uk-container uk-container-xsmall">
+                    <div class="uk-panel">
+                        <div class="uk-card uk-card-small uk-radius-large uk-background-white-5">
+                            <div class="uk-grid uk-grid-match" data-uk-grid="">
+                                <div class="uk-width-expand@m">
+                                    <div class="uk-grid-xsmall uk-child-width-1-2@m uk-grid" data-uk-grid="">
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Theme Source files</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">6 Months Premium Support</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Quality Checked by Envato</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Free and Recurring Updates</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">30+ Pixel-Perfect Pages</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">70+ UI Elements</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Easy to customize</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Dark and light mode</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Well Documented</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="uk-flex-middle">
+                                                <span class="uk-icon-small uk-text-gradient material-icons">check_circle</span>
+                                                <span class="uk-text-small uk-margin-xsmall-left">Developer Friendly Code</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-3@m uk-flex-middle">
+                                    <div class="uk-panel uk-text-center uk-card uk-card-small uk-radius uk-background-white-5">
+                                        <p class="uk-text-overline">Limited time offer up to first 20 sales only!</p>
+                                        <h3 class="uk-heading-hero"><sup style="font-size: 51%; margin-right: 2px">$</sup>9</h3>
+                                        <a href="https://themeforest.net/user/unistudioco/portfolio" class="uk-button uk-button-medium@m uk-button-primary">Purchase now!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="uk-text-center uk-margin-medium-top@m">One time purchase only, no additional fee required!</p>
+                        <p class="uk-text-meta uk-text-center uk-flex-middle uk-flex-center">Made with <span class="uk-icon-small uk-text-danger material-icons uk-margin-2xsmall-left uk-margin-2xsmall-right">favorite</span> by <a class="uk-margin-2xsmall-left" href="https://unistudio.co">UniStudio</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- include scripts -->
+        <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+        <script defer src="assets/js/app.js"></script>
+        <script defer src="assets/js/swiper-helper.js"></script>
+        <script defer src="assets/js/typed-helper.js"></script>
+        <script defer src="assets/js/anime-helper.js"></script>
+        <script defer src="assets/js/anime-helper-defined-timelines.js"></script>
+    </body>
+</html>

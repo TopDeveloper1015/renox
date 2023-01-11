@@ -1,0 +1,330 @@
+// ==================================================
+// Common Mixin
+// ==================================================
+
+@use "sass:map";
+@use "sass:list";
+@use 'sass:math';
+
+// Font Properties
+@mixin font-props($name) {
+    font-size: var(--sizes-#{$name}-size) !important;
+    line-height: var(--sizes-#{$name}-lh);
+    letter-spacing: var(--sizes-#{$name}-lp);
+}
+
+// Media Queries
+@mixin wrap-media {
+    @content('');
+    @each $bp, $width in map.get($config, 'breakpoints') {
+        html.bp-#{$bp} #{if(&, &, '')} {
+            @content('\\@' + $bp);
+        }
+    }
+}
+@mixin sm {
+    html.bp-s & {
+        @content;
+    }
+}
+@mixin md {
+    html.bp-m & {
+        @content;
+    }
+}
+@mixin lg {
+    html.bp-l & {
+        @content;
+    }
+}
+@mixin xl {
+    html.bp-xl & {
+        @content;
+    }
+}
+
+// Responsive bp
+@mixin make-responsive($selector: '&', $type: 'min') {
+    $breakpoints: map.get($config, 'breakpoints');
+    $selectors: ( $selector );
+    @each $bp, $bp-value in $breakpoints {
+        $bp-selector: 'html.bp-' + $bp + if($type == 'max', '-max', '') + ' ' + if(&, &, '');
+        $bp-selector: $bp-selector + $selector + '\\@' + $bp;
+        $selectors: append($selectors, $bp-selector, comma);
+    }
+    #{$selectors} {
+        @content;
+    }
+}
+
+// Dark mode
+@mixin dark($selector: '&', $pseudo: '') {
+    @if index(('::before', ':before', '::after', ':after'), $selector) and $pseudo == '' {
+        $pseudo: $selector;
+        $selector: '&';
+    }
+    #{$selector}.uk-dark#{$pseudo}, .uk-dark #{$selector}#{$pseudo} {
+        @content;
+    }
+}
+@mixin dark-prop($prop, $value, $dark-value, $selector: '&', $pseudo: '') {
+    @if index(('::before', ':before', '::after', ':after'), $selector) and $pseudo == '' {
+        $pseudo: $selector;
+        $selector: '&';
+    }
+    #{$selector}#{$pseudo} {
+        #{$prop}: $value;
+    }
+    #{$selector}.uk-dark#{$pseudo}, .uk-dark #{$selector}#{$pseudo} {
+        #{$prop}: $dark-value;
+    }
+}
+@mixin dark-props($props, $selector: '&', $pseudo: '') {
+    @if index(('::before', ':before', '::after', ':after'), $selector) and $pseudo == '' {
+        $pseudo: $selector;
+        $selector: '&';
+    }
+    #{$selector}#{$pseudo} {
+        @content;
+        @each $prop, $value in $props {
+            #{$prop}: list.nth($value, 1) !important;
+        }
+    }
+    #{$selector}.uk-dark#{$pseudo}, .uk-dark #{$selector}#{$pseudo} {
+        @each $prop, $value in $props {
+            #{$prop}: list.nth($value, 2) !important;
+        }
+    }
+}
+
+// Generate color palette based on origin
+@mixin create-color($name, $is-dark: false) {
+    @each $type in ('text', 'background', 'border') {
+        @each $level in $colors-levels {
+            $name-suffix: '-' + $level;
+            @if ($name != 'gray' and $name != 'light' and $level == 50) {
+                $name-suffix: '';
+            }
+            $full-name: $name + $name-suffix;
+            $value: var(--color-#{$full-name});
+            $selector-prefix: if($is-dark, '.uk-dark .dark\\:', '.');
+            $selector-suffix: 'uk-' + $type + '-' + $full-name;
+            $selectors: ( $selector-prefix + $selector-suffix );
+            @if $is-dark {
+                $selector-prefix: '.uk-dark.dark\\:';
+                $selector: $selector-prefix + $selector-suffix;
+                $selectors: append($selectors, $selector, comma);
+            }
+            #{$selectors} {
+                #{if($type == 'text', '', $type + '-') + 'color'}: $value !important;
+            }
+        }
+    }
+    @each $type in ('text', 'background', 'border') {
+        @each $level in $colors-levels {
+            $name-suffix: '-' + $level;
+            @if ($name != 'gray' and $name != 'light' and $level == 50) {
+                $name-suffix: '';
+            }
+            $full-name: $name + $name-suffix;
+            $value: var(--color-#{$full-name});
+            $selector-prefix: if($is-dark, '.uk-dark .dark\\:hover\\:', '.hover\\:');
+            $selector-suffix: 'uk-' + $type + '-' + $full-name + ':hover';
+            $selectors: ( $selector-prefix + $selector-suffix );
+            @if $is-dark {
+                $selector-prefix: '.uk-dark.dark\\:hover\\:';
+                $selector: $selector-prefix + $selector-suffix;
+                $selectors: append($selectors, $selector, comma);
+            }
+            #{$selectors} {
+                #{if($type == 'text', '', $type + '-') + 'color'}: $value !important;
+                transition: .1s ease-in-out;
+                transition-property: color, background-color, border-color;
+            }
+        }
+    }
+}
+
+// Generate rgba palette based on origin
+@mixin generate-rgba {
+    @each $color in ('white', 'black') {
+        @each $rule in ('text', 'background', 'border') {
+            .uk-#{$rule}-#{$color},
+            .uk-dark.dark\:uk-#{$rule}-#{$color},
+            .uk-dark .dark\:uk-#{$rule}-#{$color} {
+                @for $step from 1 through 20 {
+                    &#{if(5 * $step != 100, '-' + 5 * $step, '')} {
+                        #{if($rule == 'text', 'color', $rule + '-color')}: #{if($color == 'white', rgba(255, 255, 255, math.div($step, 20)), rgba(0, 0, 0, math.div($step, 20)))} !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Gradient
+@mixin gradient {
+    background-color: var(--color-primary);
+    background-image: linear-gradient(var(--gradient-angle), var(--gradient-first), var(--gradient-second), var(--gradient-third));
+}
+
+// ==================================================
+// Component & Base Mixin
+// ==================================================
+
+// Text
+@mixin text-size-modifier($bp: '') {
+    @each $name, $size in map.get($config, 'sizes', 'text') {
+        &#{if($name != '', '-' + $name, '')}#{$bp} {
+            @include font-props('text' + if($name != '', '-' + $name, ''));
+        }
+    }
+
+    &-lead#{$bp} {
+        @include font-props('text-xlarge');
+        color: var(--body-color-text);
+    }
+    &-meta#{$bp} {
+        @include font-props('text-xsmall');
+        font-weight: 500;
+    }
+    &-overline#{$bp} {
+        @include font-props('text-xsmall');
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+}
+@mixin text-weight-modifier($bp: '') {
+    @each $name, $size in map.get($config, 'font', 'weight') {
+        &#{if($name != '', '-' + $name, '')}#{$bp} {
+            font-weight: var(--font-weight-#{$name}) !important;
+        }
+    }
+}
+
+// Icon
+@mixin icon {
+
+    @include wrap-media() using ($bp) {
+        // Size Modifier
+        @each $name, $size in map.get($config, 'sizes', 'icon') {
+            $dash-name: if($name != '', '-' + $name, '');
+            .uk-icon#{$dash-name}#{$bp} {
+                font-size: var(--sizes-icon#{$dash-name});
+                width: var(--sizes-icon#{$dash-name});
+                height: var(--sizes-icon#{$dash-name});
+                line-height: 1;
+            }
+        }
+    }
+
+}
+
+// Border
+@mixin border {
+    // Location Suffixes
+    $location-suffixes: ("", "top", "right", "bottom", "left", "remove");
+
+    @each $border-suffix in $location-suffixes {
+        @if $border-suffix != '' {
+            @include make-responsive('.uk-border-#{$border-suffix}') {
+                @if $border-suffix != 'remove' {
+                    border-#{$border-suffix}: 1px solid var(--border-color) !important;
+                } @else {
+                    border: 0;
+                }
+            }
+        } @else {
+            @include make-responsive('.uk-border') {
+                border:  1px solid var(--border-color) !important;
+            }
+        }
+    }
+}
+
+// Radius
+@mixin radius {
+    // Location Suffixes
+    $location-suffixes: ("", "top", "top-right", "top-left", "bottom", "bottom-right", "bottom-left", "right", "left");
+
+    // All sides radius
+    @each $radius-suffix, $radius-value in map.get($config, 'sizes', 'radius') {
+        @if $radius-suffix != '' {
+            @include make-responsive('.uk-radius-#{$radius-suffix}') {
+                border-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')}) !important;
+            }
+        } @else {
+            @include make-responsive('.uk-radius') {
+                border-radius: var(--sizes-radius) !important;
+            }
+        }
+    }
+    @include wrap-media() using ($bp) {
+        // Exact size radius
+        @each $suffix in $location-suffixes {
+            @if $suffix != '' {
+                .uk-radius-remove-#{$suffix}#{$bp} {
+                    @if $suffix == 'top' {
+                        border-top-right-radius: 0 !important;
+                        border-top-left-radius: 0 !important;
+                    } @else if $suffix == 'right' {
+                        border-top-right-radius: 0 !important;
+                        border-bottom-right-radius: 0 !important;
+                    } @else if $suffix == 'bottom' {
+                        border-bottom-right-radius: 0 !important;
+                        border-bottom-left-radius: 0 !important;
+                    } @else if $suffix == 'left' {
+                        border-top-left-radius: 0 !important;
+                        border-bottom-left-radius: 0 !important;
+                    } @else {
+                        border-#{$suffix}-radius: 0 !important;
+                    }
+                }
+            }
+        }
+        @each $suffix in $location-suffixes {
+            @if $suffix != '' {
+                @each $radius-suffix, $radius-value in map.get($config, 'sizes', 'radius') {
+                    $exception: list.index(('circle', 'remove', ''), $radius-suffix);
+                    @if not $exception {
+                        .uk-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')}#{if($suffix != '', '-' + $suffix, '')}#{$bp} {
+                            @if $suffix == 'top' {
+                                border-top-right-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                                border-top-left-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                            } @else if $suffix == 'right' {
+                                border-top-right-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                                border-bottom-right-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                            } @else if $suffix == 'bottom' {
+                                border-bottom-right-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                                border-bottom-left-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                            } @else if $suffix == 'left' {
+                                border-top-left-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                                border-bottom-left-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                            } @else {
+                                border-#{$suffix}-radius: var(--sizes-radius#{if($radius-suffix != '', '-' + $radius-suffix, '')});
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin location-suffix-spacing($rule, $location-suffix, $value) {
+    @if $location-suffix != '' or $rule == 'padding' {
+        #{$rule}#{$location-suffix}: $value;
+    } @else {
+        #{$rule}-bottom: $value;
+    }
+}
+
+@mixin location-suffix-offset($location-suffix, $value) {
+    @if $location-suffix != '' {
+        margin#{$location-suffix}: $value;
+    } @else {
+        margin-left: $value;
+        margin-right: $value;
+    }
+}

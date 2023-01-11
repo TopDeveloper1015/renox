@@ -1,0 +1,13 @@
+@use "sass:map";
+
+// Width
+@include wrap-media() using ($bp) {
+    // Size Modifier
+    @each $name, $size in map.get($config, 'sizes', 'width') {
+        @if $name != '' {
+            .uk-width-#{$name}#{$bp} {
+                width: var(--sizes-width-#{$name}) !important;
+            }
+        }
+    }
+}

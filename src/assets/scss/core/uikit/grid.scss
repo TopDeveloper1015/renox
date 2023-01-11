@@ -1,0 +1,83 @@
+@use 'sass:map';
+
+// Gutter Modifier
+@include wrap-media() using ($bp) {
+    @each $name, $size in map.get($config, 'sizes', 'grid') {
+        $dash-name: if($name != '', '-' + $name, '');
+
+        // Gutters
+        #{if($dash-name != '', '.uk-grid', '')}.uk-grid-column#{$dash-name}#{$bp},
+        #{if($dash-name != '', '.uk-grid', '')}.uk-grid#{$dash-name}#{$bp} {
+            margin-left: calc(var(--sizes-grid#{$dash-name}) * -1) !important;
+            >* {
+                --gap-size: var(--sizes-grid#{$dash-name});
+                padding-left: var(--sizes-grid#{$dash-name}) !important;
+            }
+        }
+
+        //margin
+        *+.uk-grid-margin#{$dash-name}#{$bp},
+        .uk-grid+.uk-grid#{$dash-name}#{$bp},
+        .uk-grid+.uk-grid-row#{$dash-name}#{$bp},
+        .uk-grid#{$dash-name}#{$bp}>.uk-grid-margin,
+        .uk-grid-row#{$dash-name}#{$bp}>.uk-grid-margin {
+            margin-top: var(--sizes-grid#{$dash-name}) !important;
+        }
+
+        // Divider
+        .uk-grid-divider#{$bp} {
+            &.uk-grid-column#{$dash-name}#{$bp} {
+                &>:not(.uk-first-column)::before {
+                    left: calc(var(--sizes-grid#{$dash-name}) / 2) !important;
+                    z-index: 1;
+                }
+                &.uk-grid-stack>.uk-grid-margin::before {
+                    left: var(--sizes-grid#{$dash-name});
+                    z-index: 1;
+                }
+            }
+            &.uk-grid-row#{$dash-name}#{$bp} {
+                &>:not(.uk-first-column)::before {
+                    z-index: 1;
+                }
+                &.uk-grid-stack>.uk-grid-margin::before {
+                    top: calc((var(--sizes-grid#{$dash-name}) / 2) * -1) !important;
+                    z-index: 1;
+                }
+            }
+            &.uk-grid#{$dash-name}#{$bp} {
+                &>:not(.uk-first-column)::before {
+                    left: calc(var(--sizes-grid#{$dash-name}) / 2) !important;
+                    z-index: 1;
+                }
+                &.uk-grid-stack>.uk-grid-margin::before {
+                    top: calc((var(--sizes-grid#{$dash-name}) / 2) * -1) !important;
+                    left: var(--sizes-grid#{$dash-name});
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+.uk-expand-container {
+    --scroll-width: var(--body-scroll-width, 17px);
+    --container-width: calc((100% + var(--gap-size)) * var(--grid-total) / var(--grid-count) - var(--gap-size));
+    --expand-size: calc((100vw - var(--scroll-width) - var(--container-width)) / -2);
+    margin-right: var(--expand-size);
+    margin-left: var(--expand-size);
+}
+
+.uk-dark .uk-grid-divider.uk-grid-column > :not(.uk-first-column)::before,
+.uk-dark.uk-grid-divider.uk-grid-column > :not(.uk-first-column)::before,
+.uk-dark .uk-grid-divider.uk-grid-row > :not(.uk-first-column)::before,
+.uk-dark.uk-grid-divider.uk-grid-row > :not(.uk-first-column)::before,
+.uk-dark .uk-grid-divider.uk-grid > :not(.uk-first-column)::before,
+.uk-dark.uk-grid-divider.uk-grid > :not(.uk-first-column)::before,
+.uk-dark .uk-grid-divider.uk-grid-column.uk-grid-stack > .uk-grid-margin::before,
+.uk-dark.uk-grid-divider.uk-grid-column.uk-grid-stack > .uk-grid-margin::before,
+.uk-dark .uk-grid-divider.uk-grid-row.uk-grid-stack > .uk-grid-margin::before,
+.uk-dark.uk-grid-divider.uk-grid-row.uk-grid-stack > .uk-grid-margin::before,
+.uk-dark .uk-grid-divider.uk-grid.uk-grid-stack > .uk-grid-margin::before,
+.uk-dark.uk-grid-divider.uk-grid.uk-grid-stack > .uk-grid-margin::before {
+    border-color: rgba(255 255 255 / 10%);
+}

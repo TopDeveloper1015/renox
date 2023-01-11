@@ -1,0 +1,36 @@
+/* Import: GT Walsheim */
+@font-face {
+    font-family: "GT Walsheim";
+    src: local("GT Walsheim Light"),
+         url('../fonts/gt-walsheim/gt-walsheim-light.woff');
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT Walsheim";
+    src: local("GT Walsheim Regular"),
+         url('../fonts/gt-walsheim/gt-walsheim-regular.woff');
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT Walsheim";
+    src: local("GT Walsheim Medium"),
+         url('../fonts/gt-walsheim/gt-walsheim-medium.woff');
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "GT Walsheim";
+    src: local("GT Walsheim Bold"),
+         url('../fonts/gt-walsheim/gt-walsheim-bold.woff');
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-display: swap;
+}

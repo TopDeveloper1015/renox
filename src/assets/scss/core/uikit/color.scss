@@ -1,0 +1,9 @@
+
+@each $is-dark in (false, true) {
+    @each $name, $value in map-get($config, 'color') {
+        @include create-color($name, $is-dark);
+    }
+}
+
+// Generate RGBA colors
+@include generate-rgba;

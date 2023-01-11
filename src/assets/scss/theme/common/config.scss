@@ -1,0 +1,280 @@
+// Template config
+// Please do not edit cause you may lose your changes after next update!
+
+$config: (
+    'font': (
+        'family': (
+            'primary': ( "GT Walsheim", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+            'secondary': ( "GT Walsheim", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+            'mono': ( "SF Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+        )
+    ),
+    'heading': (
+        'font': (
+            'weight': 700,
+        )
+    ),
+    'root-size': 18,
+    'radius': 9px,
+    'border-color': rgba(131, 131, 131, 0.25),
+    'gradient': (
+        'first': #ff5c88,
+        'second': #ff0062,
+        'third': #ff5722,
+        'angle': 124deg,
+    ),
+    'color': (
+        'primary': #ff0062,
+        'secondary': #ff5722,
+        'tertiary': #9366e7,
+        'quaternary': #ec2550,
+        'info': #03a5d6,
+        'success': #4CAF50,
+        'warning': #ffb307,
+        'danger': #e44b4b,
+        'gray': #bebebe,
+        'default': #ffffff,
+        'darkgrey': #212121,
+    ),
+    "sizes": (
+        "text": (
+            "":         ("size": 1rem, "lh": 1.5, "lp": normal),
+            "xsmall":   ("size": .750rem, "lh": 1.5, "lp": normal),
+            "small":    ("size": .875rem, "lh": 1.5, "lp": normal),
+            "medium":   ("size": 1rem, "lh": 1.5, "lp": normal),
+            "large":    ("size": 1.125rem, "lh": 1.5, "lp": normal),
+            "xlarge":   ("size": 1.25rem, "lh": 1.5, "lp": normal),
+            "2xlarge":  ("size": 1.5rem, "lh": 1.5, "lp": normal),
+            "3xlarge":  ("size": 1.75rem, "lh": 1.5, "lp": normal),
+        ),
+        "heading": (
+            "hero":  ("size": 68px, "lh": 1, "lp": -0.75px),
+            "h1":       ("size": 56px, "lh":  1, "lp": -0.75px),
+            "h2":       ("size": 40px, "lh":  1.2, "lp": -0.75px),
+            "h3":       ("size": 32px, "lh":  1.2, "lp": -0.75px),
+            "h4":       ("size": 28px, "lh":  1, "lp": -0.75px),
+            "h5":       ("size": 20px, "lh":  1, "lp": 0px),
+            "h6":       ("size": 17px, "lh":  1.5, "lp": 0px),
+        ),
+        "container": (
+            "": 1200px, // default
+            "xsmall": 784px,
+            "small": 992px,
+            "large": 1376px,
+            "xlarge": 1600px,
+        ),
+        "section": (
+            "": 32px, // default
+            "2xsmall": 8px,
+            "xsmall": 16px,
+            "small": 24px,
+            "medium": 48px,
+            "large": 64px,
+            "xlarge": 80px,
+            "2xlarge": 128px,
+            "collapse": 0px
+        ),
+        "width": (
+            "2xsmall": 80px,
+            "xsmall": 160px,
+            "small": 264px,
+            "medium": 368px,
+            "large": 472px,
+            "xlarge": 576px,
+            "2xlarge": 680px,
+            "3xlarge": 992px,
+        ),
+        "height": (
+            "2xsmall": 100px,
+            "xsmall": 150px,
+            "small": 200px,
+            "medium": 250px,
+            "large": 300px,
+            "xlarge": 350px,
+            "2xlarge": 400px,
+            "3xlarge": 450px,
+            "4xlarge": 500px,
+        ),
+        "grid": (
+            "": 32px, // default
+            "collapse": 0,
+            "gallery": 5px,
+            "2xsmall": 8px,
+            "xsmall": 16px,
+            "small": 24px,
+            "medium": 48px,
+            "large": 56px,
+            "xlarge": 64px,
+            "2xlarge": 80px,
+            "3xlarge": 128px,
+        ),
+        "spacing": (
+            "": 24px, // default
+            "3xsmall": 2px,
+            "2xsmall": 4px,
+            "xsmall": 8px,
+            "small": 16px,
+            "medium": 32px,
+            "large": 48px,
+            "xlarge": 64px,
+            "2xlarge": 80px,
+            "3xlarge": 128px,
+            "remove": 0px
+        ),
+        "subnav": (
+            "": 16px, // default
+            "2xsmall": 2px,
+            "xsmall": 4px,
+            "small": 8px,
+            "medium": 24px,
+            "large": 32px,
+            "xlarge": 48px,
+            "2xlarge": 64px,
+            "collapse": 0px,
+        ),
+        "button": (
+            "": ("height": 40px, "padding": 20px, "text": 1rem),
+            "2xsmall": ("height": 28px, "padding": 12px, "text": .75rem),
+            "xsmall": ("height": 36px, "padding": 16px, "text": .875rem),
+            "small": ("height": 40px, "padding": 20px, "text": .875rem),
+            "medium": ("height": 48px, "padding": 24px, "text": 1rem),
+            "large": ("height": 56px, "padding": 48px, "text": 1rem),
+        ),
+        "form": (
+            "": ("height": 40px, "padding": 0 16px, "text": 1), // Default
+            "2xsmall": ("height": 30px, "padding": 0 12px, "text": .875rem),
+            "xsmall": ("height": 36px, "padding": 0 14px, "text": .875rem),
+            "small": ("height": 40px, "padding": 0 16px, "text": .950rem),
+            "medium": ("height": 48px, "padding": 0 20px, "text": 1rem),
+            "large": ("height": 56px, "padding": 0 24px, "text": 1rem),
+        ),
+        "card": (
+            "": 32px, // default
+            "collapse": 0,
+            "2xsmall": 8px,
+            "xsmall": 16px,
+            "small": 24px,
+            "medium": 48px,
+            "large": 56px,
+            "xlarge": 64px,
+            "2xlarge": 80px,
+            "3xlarge": 128px,
+        ),
+        "icon": (
+            "": 24px, // default
+            "3xsmall": 11px,
+            "2xsmall": 14px,
+            "xsmall": 16px,
+            "small": 20px,
+            "medium": 32px,
+            "large": 48px,
+            "xlarge": 54px,
+            "2xlarge": 64px,
+        ),
+        "offset": (
+            "": -32px, // default
+            "collapse": 0,
+            "2xsmall": -8px,
+            "xsmall": -16px,
+            "small": -24px,
+            "medium": -48px,
+            "large": -56px,
+            "xlarge": -64px,
+            "2xlarge": -80px,
+            "3xlarge": -104px,
+        ),
+    ),
+    "link": (
+        "color": (
+            "text": var(--color-gray-100),
+            "text-hover": var(--color-primary)
+        ),
+    ),
+    "button": (
+        "font": (
+            "typeface": var(--font-family-primary),
+            "size": .875rem,
+            "weight": 700,
+        ),
+        "border": (
+            "width": 1px,
+        )
+    ),
+    "form": (
+        "font": (
+            "size": var(--sizes-form-text),
+            "weight": 700,
+            "spacing": normal,
+            "transform": initial,
+        ),
+    ),
+    "tab": (
+        "font": (
+            "size": inherit,
+            "weight": 700,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "text": var(--color-gray-70),
+            "text-hover": var(--color-gray-80),
+            "text-active": var(--color-gray-100),
+        ),
+        "border": (
+            "width": 4px,
+            "color": var(--color-primary),
+            "radius": var(--radius),
+        ),
+        "display": inline-flex,
+        "align-text": center,
+        "margin": 0,
+        "padding": 5px,
+    ),
+    "accordion": (
+        "color": (
+            "text-active": initial,
+        ),
+    ),
+    "header": (
+        "logo": (
+            "font": (
+                "typeface": var(--font-family-secondary),
+                "weight": 700,
+                "spacing": -0.06rem,
+            ),
+        ),
+        "topbar": (
+            "font": (
+                "size": .8rem,
+            ),
+            "height": 36px,
+        ),
+        "navbar": (
+            "font": (
+                "size": 1.125rem,
+                "weight": 700,
+                "spacing": 0,
+            ),
+            "height": 70px,
+            "vertical-spacing": 4px,
+            "row-spacing": 12px,
+            "sticky": (
+                "height": 70px,
+            ),
+            "mobile": (
+                "height": 70px,
+            ),
+        ),
+        "nav": (
+            "row-spacing": 24px,
+        ),
+    ),
+    "body": (
+        "color": (
+            "text": var(--color-gray-100)
+        ),
+        "font": (
+            "size": var(--sizes-text-medium-size)
+        ),
+    ),
+);

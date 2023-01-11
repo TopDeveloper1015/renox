@@ -1,0 +1,51 @@
+@use "sass:map";
+
+/* UIKit: Card */
+
+// Color modifier
+@each $name, $color in map.get($config, 'colors', 'accent') {
+    .uk-card-#{$name} {
+        background-color: var(--color-gray-10);
+        @if $name != "muted" and $name != "default" {
+            background-color: var(--colors-card-#{$name});
+            color: white;
+            * {
+                color: white;
+            }
+            .uk-card {
+                &-header {
+                    border-bottom: 1px solid rgba(white, .25);
+                }
+                &-footer {
+                    border-top: 1px solid rgba(white, .25);
+                }
+            }
+        }
+        .uk-card {
+            &-header {
+                border-bottom: 1px solid rgba(black, .1);
+            }
+            &-footer {
+                border-top: 1px solid rgba(black, .1);
+            }
+        }
+    }
+}
+
+// Size modifier
+@each $name, $size in map.get($config, 'sizes', 'card') {
+    @if $name != '' {
+        @include make-responsive('.uk-card-#{$name}') {
+            padding: var(--sizes-card#{if($name != '', '-' + $name, '')});
+        }
+    } @else {
+        .uk-card-body {
+            padding: var(--sizes-card) !important;
+        }
+    }
+}
+
+// Border modifier
+@include make-responsive('.uk-card-border') {
+    border: 1px solid var(--border-color);
+}

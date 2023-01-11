@@ -1,0 +1,236 @@
+/* Header */
+.uni-header {
+    --topbar-height: calc(var(--header-topbar-height) - (var(--header-topbar-vertical-spacing) * 2));
+    --topbar-mobile-spacing: calc(var(--header-topbar-row-spacing) / 2);
+    --navbar-height: calc(var(--header-navbar-height) - (var(--header-navbar-vertical-spacing) * 2));
+    --navbar-mobile-height: calc(var(--header-navbar-mobile-height) - (var(--header-navbar-vertical-spacing) * 2));
+    --navbar-mobile-spacing: calc(var(--header-navbar-row-spacing) / 2);
+    --bottombar-height: calc(var(--header-bottombar-height) - (var(--header-bottombar-vertical-spacing) * 2));
+    --bottombar-mobile-spacing: calc(var(--header-bottombar-row-spacing) / 2);
+
+    /* Header : navbar  */
+    &-navbar {
+        .uk-navbar {
+            min-height: var(--navbar-mobile-height);
+            padding: var(--header-navbar-vertical-spacing) 0;
+
+            // Container
+            &-top,
+            &-bottom {
+                margin-left: calc((var(--header-navbar-row-spacing) / 2) * -1);
+                margin-right: calc((var(--header-navbar-row-spacing) / 2) * -1);
+            }
+
+            // Items, Nav, Toggle shared styles
+            &-item,
+            &-nav,
+            &-toggle {
+                font-family: var(--header-navbar-font-typeface);
+                font-size: var(--header-navbar-font-size);
+                font-weight: var(--header-navbar-font-weight);
+                letter-spacing: var(--header-navbar-font-spacing);
+                text-transform: var(--header-navbar-font-transform);
+                color: var(--header-navbar-color-text);
+                padding-left: var(--navbar-mobile-spacing);
+                padding-right: var(--navbar-mobile-spacing);
+            }
+
+            &-bottom {
+                padding-top: var(--header-navbar-row-spacing);
+            }
+
+            // Divider columns
+            &-divider-column {
+                > .uk-navbar-bottom {
+                    margin-top: var(--header-navbar-row-spacing);
+                    &::before {
+                        border-color: var(--border-color);
+                        left: var(--navbar-mobile-spacing);
+                        right: var(--navbar-mobile-spacing);
+                    }
+                }
+            }
+
+            // Logo
+            .uk-logo {
+                font-family: var(--header-logo-font-typeface);
+                font-size: var(--header-logo-font-size);
+                font-weight: var(--header-logo-font-weight);
+                letter-spacing: var(--header-logo-font-spacing);
+                text-transform: var(--header-logo-font-transform);
+                line-height: 1;
+                color: var(--header-logo-color-text);
+                margin: 0 !important;
+            }
+
+            // Navigation
+            &-nav {
+                > li {
+                    > a {
+                        font-family: var(--header-nav-font-typeface);
+                        font-size: var(--header-nav-font-size);
+                        font-weight: var(--header-nav-font-weight);
+                        letter-spacing: var(--header-nav-font-spacing);
+                        text-transform: var(--header-nav-font-transform);
+                        color: var(--header-nav-color-text) !important;
+                        &:hover {
+                            color: var(--header-nav-color-text-hover);
+                        }
+                    }
+                    +li {
+                        margin-left: var(--header-nav-row-spacing);
+                    }
+                }
+                &-large {
+                    > li+li {
+                        margin-left: calc(var(--header-nav-row-spacing) * 2);
+                    }
+                }
+            }
+
+            // Desktop spacing
+            @include md {
+
+                min-height: var(--navbar-height);
+
+                &-top,
+                &-bottom {
+                    margin-left: calc(var(--header-navbar-row-spacing) * -1);
+                    margin-right: calc(var(--header-navbar-row-spacing) * -1);
+                }
+
+                // Items, nav, toggles
+                &-item,
+                &-nav,
+                &-toggle {
+                    padding-left: var(--header-navbar-row-spacing);
+                    padding-right: var(--header-navbar-row-spacing);
+                }
+
+                // Divider
+                &-divider-column {
+                    > .uk-navbar-bottom {
+                        &::before {
+                            left: var(--header-navbar-row-spacing);
+                            right: var(--header-navbar-row-spacing);
+                        }
+                    }
+                }
+            }
+        }
+
+        .uk-sticky-logo {
+            display: none;
+        }
+
+        &.uk-sticky.uk-active {
+            z-index: 999;
+            left: 0;
+            right: 0;
+            color: var(--header-navbar-sticky-color-text);
+            box-shadow: var(--header-navbar-sticky-shadow);
+            &:not(.uni-mobile-header) {
+                .uk-logo:not(.uk-sticky-logo) {
+                    display: none;
+                }
+                .uk-logo.uk-sticky-logo {
+                    display: block;
+                }
+            }
+            &:not(.uk-sticky-transparent) {
+                @include dark-props((
+                    background-color: (white, var(--color-gray-100)),
+                    color: (black, white),
+                ));
+            }
+        }
+
+    }
+
+    /* Header : topbar  */
+    &-topbar {
+        .uk-navbar {
+            min-height: var(--topbar-height);
+            padding: var(--header-topbar-vertical-spacing) 0;
+
+            // Container
+            &-container {
+                margin-left: calc(var(--topbar-mobile-spacing) * -1);
+                margin-right: calc(var(--topbar-mobile-spacing) * -1);
+            }
+
+            // Items, Nav, Toggle shared styles
+            &-item,
+            &-nav,
+            &-toggle {
+                font-family: var(--header-topbar-font-typeface);
+                font-size: var(--header-topbar-font-size);
+                font-weight: var(--header-topbar-font-weight);
+                letter-spacing: var(--header-topbar-font-spacing);
+                text-transform: var(--header-topbar-font-transform);
+                color: var(--header-topbar-color-text);
+                padding-left: var(--topbar-mobile-spacing);
+                padding-right: var(--topbar-mobile-spacing);
+            }
+
+            // Navigation
+            &-nav {
+                > li+li {
+                    margin-left: var(--header-topbar-row-spacing);
+                }
+                &-large {
+                    > li+li {
+                        margin-left: calc(var(--header-nav-row-spacing) * 2);
+                    }
+                }
+            }
+        }
+    }
+
+    /* Header : bottombar  */
+    &-bottombar {
+        .uk-navbar {
+            min-height: var(--bottombar-height);
+            padding: var(--header-bottombar-vertical-spacing) 0;
+
+            // Container
+            &-container {
+                margin-left: calc(var(--bottombar-mobile-spacing) * -1);
+                margin-right: calc(var(--bottombar-mobile-spacing) * -1);
+            }
+
+            // Items, Nav, Toggle shared styles
+            &-item,
+            &-nav,
+            &-toggle {
+                font-family: var(--header-bottombar-font-typeface);
+                font-size: var(--header-bottombar-font-size);
+                font-weight: var(--header-bottombar-font-weight);
+                letter-spacing: var(--header-bottombar-font-spacing);
+                text-transform: var(--header-bottombar-font-transform);
+                color: var(--header-bottombar-color-text);
+                padding-left: var(--bottombar-mobile-spacing);
+                padding-right: var(--bottombar-mobile-spacing);
+            }
+
+            // Navigation
+            &-nav {
+                > li+li {
+                    margin-left: var(--header-bottombar-row-spacing);
+                }
+                &-large {
+                    > li+li {
+                        margin-left: calc(var(--header-nav-row-spacing) * 2);
+                    }
+                }
+            }
+        }
+    }
+
+    &-rainbow {
+        padding-bottom: 4px;
+        background-image: linear-gradient(to left, var(--color-primary), var(--color-secondary), var(--color-tertiary), var(--color-info));
+    }
+
+    z-index: 99;
+}

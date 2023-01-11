@@ -1,0 +1,86 @@
+
+// Responsive Flex Modifiers
+@mixin flex-modifiers($breakpoint: null) {
+    // Containers
+    $containers: ('flex': flex, 'inline': inline-flex);
+    @each $name, $val in $containers {
+        @if $name == 'flex' {
+            &\@#{$breakpoint} {
+                display: $val;
+            }
+        } @else {
+            &-#{$name}\@#{$breakpoint} {
+                display: $val;
+            }
+        }
+    }
+
+    // Vertical Alignements
+    $v-alignments: ('top': flex-start, 'middle': center, 'bottom': flex-end, 'stretch': stretch);
+    @each $name, $val in $v-alignments {
+        @if $breakpoint {
+            &-#{$name}\@#{$breakpoint} {
+                align-items: $val;
+            }
+        }
+    }
+
+    // Horizontal Alignements
+    $h-alignments: ('left': flex-start, 'right': flex-end);
+    @each $name, $val in $h-alignments {
+        @if $breakpoint {
+            &-#{$name}\@#{$breakpoint} {
+                justify-content: $val;
+            }
+        }
+    }
+
+    // Directions Modifiers
+    $directions: ('row': row, 'row-reverse': row-reverse, 'column': column, 'column-reverse': column-reverse);
+    @each $name, $val in $directions {
+        @if $breakpoint {
+            &-#{$name}\@#{$breakpoint} {
+                flex-direction: $val;
+            }
+        }
+    }
+
+    // Items Dimensions
+    $dimensions: ('1': 1, 'none': 0, 'auto': auto);
+    @each $name, $val in $dimensions {
+        @if $breakpoint {
+            &-#{$name}\@#{$breakpoint} {
+                flex: $val;
+            }
+        }
+    }
+}
+
+.uk-flex {
+    // Flex modifiers responsive compatibility
+    @include sm {
+        @include flex-modifiers('s');
+    }
+    @include md {
+        @include flex-modifiers('m');
+    }
+    @include lg {
+        @include flex-modifiers('l');
+    }
+    @include xl {
+        @include flex-modifiers('xl');
+    }
+    &-left {
+        justify-content: flex-start;
+    }
+    &-right {
+        justify-content: flex-end;
+    }
+    &-between {
+        justify-content: space-between;
+    }
+}
+
+*[class*=uk-flex] {
+    display: flex;
+}

@@ -1,0 +1,35 @@
+[class*=uk-modal-close-] {
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    > i {
+        transition: transform 700ms cubic-bezier(0.17, 0.67, 0, 1.01);
+    }
+    > svg {
+        stroke-width: 1.5px;
+    }
+    &:hover {
+        > * {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.uk-modal {
+    z-index: 9999;
+    &-video {
+        z-index: 2000;
+    }
+}
+
+.uk-dark {
+    .uk-modal-dialog,
+    &.uk-modal-dialog {
+        background-color: var(--color-gray-90);
+    }
+}

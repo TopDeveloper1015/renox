@@ -1,0 +1,63 @@
+@use 'sass:math';
+@use 'sass:map';
+
+// ==================================================
+// Functions
+// ==================================================
+
+// Calculate line height based on font size
+@function -line-height($size, $line-height: 1.618, $offset: 0) {
+    @return calc((#{$line-height} * #{$size} - #{$offset}) * 1px);
+}
+
+// Calculate height based on element ratio
+@function -ratio($x: 1, $y: 1) {
+    @return calc(#{$y} / #{$x} * 100%);
+}
+
+// PX to REM converter
+@function -pixToRem($size, $root: var(--root-size)) {
+    @return calc(#{$size} / #{$root} * 1rem);
+}
+
+// Color Config
+@function create-color-config($color-base, $name: '') {
+    $config-color: ();
+    @if type-of($color-base) != 'map' {
+        @each $level in $colors-levels {
+            $key: $level;
+            @if $name != 'gray' and $name != 'light' and $level == 50 {
+                $key: '';
+            }
+            $percent: 0%;
+            $target-color: if($level < 50, white, black);
+            @if $level < 50 {
+                // 10 -> 40
+                // 90% -> 0%
+                $percent: (1 - math.div($level - 10, 40)) * 90 * 1%;
+            } @else {
+                // 50 -> 100
+                // 0% -> 90%
+                $percent: math.div($level - 50, 100 - 50) * 90 * 1%;
+            }
+            $color: mix($target-color, $color-base, $percent);
+            $config-color: map-merge($config-color, ( $key: $color ));
+        }
+    } @else {
+        $config-color: $color-base;
+    }
+    @return $config-color;
+}
+@function create-color-config-multiple($object) {
+    @each $key, $value in $object {
+        $object: map-merge($object, ( $key: create-color-config($value, $key) ));
+    }
+    @return $object;
+}
+
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map.get($map, $key);
+    }
+    @return $map;
+}

@@ -1,0 +1,481 @@
+// ==================================================
+// Default config for CSS Variables
+// ==================================================
+
+@use "sass:map";
+
+$default-config: (
+    "font": (
+        "family": (
+            "primary": ( "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+            "secondary": ( "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+            "serif": ( "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+            "mono": ( "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" ),
+        ),
+        "weight": (
+            "light": 300,
+            "normal": 400,
+            "semibold": 500,
+            "bold": 700,
+        ),
+    ),
+    "root-size": 17,
+    "radius": 5px,
+    "border-color": rgba(145, 145, 145, 0.2),
+    "breakpoints": (
+        "xs": 480px,
+        "s": 640px,
+        "m": 960px,
+        "l": 1200px,
+        "xl": 1600px,
+    ),
+    'color': (
+        'primary': #0066ff,
+        'secondary': #121212,
+        'info': #015fff,
+        'success': #37c563,
+        'warning': #ff9800,
+        'danger': #ff5549,
+        'gray': #b5b5b5,
+        'light': #F4F4F4,
+        'muted': #535353,
+    ),
+    "colors": map.merge((
+        "accent": get_accent(),
+    ), $elements-accents),
+    "sizes": (
+        "text": (
+            "":         ("size": 17px, "lh": 25px, "lp": normal),
+            "2xsmall":  ("size": 10px, "lh": 15px, "lp": normal),
+            "xsmall":   ("size": 13px, "lh": 20px, "lp": normal),
+            "small":    ("size": 15px, "lh": 20px, "lp": normal),
+            "medium":   ("size": 17px, "lh": 25px, "lp": normal),
+            "large":    ("size": 20px, "lh": 30px, "lp": normal),
+            "xlarge":   ("size": 25px, "lh": 35px, "lp": normal),
+            "2xlarge":  ("size": 30px, "lh": 40px, "lp": normal),
+        ),
+        "heading": (
+            "hero":  ("size": 95px, "lh": 100px, "lp": -1.2px),
+            "h1":       ("size": 70px, "lh":  75px, "lp": -0.8px),
+            "h2":       ("size": 55px, "lh":  60px, "lp": -0.6px),
+            "h3":       ("size": 45px, "lh":  50px, "lp": -0.4px),
+            "h4":       ("size": 35px, "lh":  40px, "lp": -0.3px),
+            "h5":       ("size": 25px, "lh":  30px, "lp": -0.2px),
+            "h6":       ("size": 20px, "lh":  25px, "lp": normal),
+        ),
+        "container": (
+            "": 1140px, // default
+            "xsmall": 750px,
+            "small": 945px,
+            "large": 1340px,
+            "xlarge": 1570px,
+        ),
+        "section": (
+            "": 50px, // default
+            "xsmall": 20px,
+            "small": 30px,
+            "medium": 40px,
+            "large": 60px,
+            "xlarge": 80px,
+            "2xlarge": 140px,
+            "collapse": 0px
+        ),
+        "width": (
+            "2xsmall": 68px,
+            "xsmall": 165px,
+            "small": 263px,
+            "medium": 360px,
+            "large": 458px,
+            "xlarge": 555px,
+            "2xlarge": 653px,
+        ),
+        "height": (
+            "2xsmall": 100px,
+            "xsmall": 130px,
+            "small": 180px,
+            "medium": 200px,
+            "large": 300px,
+            "xlarge": 400px,
+            "2xlarge": 500px,
+            "3xlarge": 580px,
+            "4xlarge": 670px,
+        ),
+        "grid": (
+            "": 30px, // default
+            "collapse": 0px,
+            "gallery": 2px,
+            "2xsmall": 5px,
+            "xsmall": 10px,
+            "small": 20px,
+            "medium": 40px,
+            "large": 60px,
+            "xlarge": 140px,
+            "2xlarge": 224px,
+        ),
+        "spacing": (
+            "": 20px, // default
+            "2xsmall": 5px,
+            "xsmall": 10px,
+            "small": 15px,
+            "medium": 30px,
+            "large": 40px,
+            "xlarge": 50px,
+            "2xlarge": 60px,
+            "3xlarge": 100px,
+            "remove": 0px
+        ),
+        "button": (
+            "xsmall": ("height": 30px, "padding": 10px, "text": var(--sizes-text-xsmall-size)),
+            "small": ("height": 40px, "padding": 20px, "text": var(--sizes-text-medium-size)),
+            "medium": ("height": 50px, "padding": 30px, "text": var(--sizes-text-medium-size)),
+            "large": ("height": 60px, "padding": 40px, "text": var(--sizes-text-large-size)),
+        ),
+        "form": (
+            "": ("height": 50px, "padding": 10px, "text": var(--sizes-text-medium-size)), // Default
+            "xsmall": ("height": 30px, "padding": 10px, "text": var(--sizes-text-small-size)),
+            "small": ("height": 40px, "padding": 10px, "text": var(--sizes-text-medium-size)),
+            "medium": ("height": 50px, "padding": 10px, "text": var(--sizes-text-medium-size)),
+            "large": ("height": 60px, "padding": 12px, "text": var(--sizes-text-large-size)),
+        ),
+        "card": (
+            "": 30px, // default
+            "2xsmall": 10px,
+            "xsmall": 15px,
+            "small": 20px,
+            "medium": 30px,
+            "large": 40px,
+            "xlarge": 50px,
+            "2xlarge": 60px,
+            "collapse": 0,
+        ),
+        "subnav": (
+            "": 7.5px, // default
+            "2xsmall": 2.5px,
+            "xsmall": 5px,
+            "small": 10px,
+            "medium": 15px,
+            "large": 20px,
+            "xlarge": 25px,
+            "2xlarge": 30px,
+            "collapse": 0px,
+        ),
+        "icon": (
+            "": 24px, // default
+            "xsmall": 16px,
+            "small": 20px,
+            "medium": 32px,
+            "large": 48px,
+            "xlarge": 54px,
+            "2xlarge": 64px,
+        ),
+        "offset": (
+            "": -15px, // default
+            "xsmall": -10px,
+            "small": -20px,
+            "medium": -30px,
+            "large": -40px,
+            "xlarge": -50px,
+            "2xlarge": -60px,
+            "3xlarge": -125px,
+            "remove": 0,
+        ),
+        "radius": (
+            "": var(--radius), // default 5px
+            "xsmall": 2px,
+            "small": 5px,
+            "medium": 10px,
+            "large": 15px,
+            "xlarge": 40px,
+            "2xlarge": 60px,
+            "circle": 50%,
+            "remove": 0
+        ),
+        "position": (
+            "2xsmall": 4px,
+            "xsmall": 8px,
+            "small": 16px,
+            "medium": 24px,
+            "large": 32px,
+            "xlarge": 48px,
+            "2xlarge": 56px,
+        ),
+    ),
+    "body": (
+        "font": (
+            "typeface": var(--font-family-primary),
+            "size": var(--sizes-form-medium-text),
+            "weight": 400,
+            "spacing": normal,
+        ),
+        "color": (
+            "background": transparent,
+            "text": var(--color-gray-70)
+        ),
+    ),
+    "heading": (
+        "font": (
+            "typeface": var(--font-family-secondary),
+            "weight": 700,
+            "style": normal,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "text": var(--color-gray-100)
+        ),
+    ),
+    "link": (
+        "color": (
+            "text": var(--color-primary),
+            "text-hover": var(--color-primary-60)
+        ),
+    ),
+    "button": (
+        "font": (
+            "size": var(--sizes-button-medium-text),
+            "typeface": var(--font-family-secondary),
+            "weight": 700,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "border": (
+            "width": 2px,
+            "color": inherit,
+            "radius": var(--radius),
+        ),
+        "height": var(--sizes-button-medium-height),
+        "display": inline-flex,
+        "align-text": center,
+        "margin": 0,
+        "padding": 0 var(--sizes-button-medium-padding),
+    ),
+    "form": (
+        "font": (
+            "typeface": var(--font-family-primary),
+            "size": var(--sizes-form-medium-text),
+            "weight": 400,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "text": var(--color-gray-100),
+            "background": rgba(155, 155, 155, .15),
+            "background-hover": rgba(155, 155, 155, .20),
+            "background-disable": rgba(155, 155, 155, .40),
+            "background-primary": var(--color-primary),
+            "background-primary-hover": var(--color-primary-60),
+            "placeholder": rgba(155, 155, 155, .70),
+        ),
+        "border": (
+            "width": 0,
+            "color": var(--border-color),
+            "radius": var(--radius),
+        ),
+        "shadow": (
+            "default": 0 0 0 1px var(--border-color),
+            "hover": 0 0 0 1px var(--border-color),
+            "focus": 0 0 0 2px var(--color-primary),
+        ),
+        "height": var(--sizes-form-medium-height),
+        "dark": (
+            "color": (
+                "text": var(--color-white),
+                "background": rgba(155, 155, 155, .15),
+                "background-hover": rgba(155, 155, 155, .20),
+                "background-disable": rgba(155, 155, 155, .40),
+                "background-primary": var(--color-primary),
+                "background-primary-hover": var(--color-primary-60),
+                "placeholder": rgba(155, 155, 155, .50),
+            ),
+        )
+    ),
+    "tab": (
+        "font": (
+            "size": var(--sizes-form-medium-text),
+            "weight": 700,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "text": var(--color-gray-70),
+            "text-hover": var(--color-gray-80),
+            "text-active": var(--color-gray-100),
+        ),
+        "border": (
+            "width": 4px,
+            "color": var(--color-primary),
+            "radius": var(--radius),
+        ),
+        "display": inline-flex,
+        "align-text": center,
+        "margin": 0,
+        "padding": 5px,
+    ),
+    "accordion": (
+        "font": (
+            "size": var(--sizes-form-large-text),
+            "weight": 700,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "text": var(--color-gray-100),
+            "text-active": var(--color-primary),
+        ),
+        "border": (
+            "width": 1px,
+            "color": var(--border-color)
+        ),
+        "margin": 20px,
+        "padding": 20px,
+    ),
+    "alert": (
+        "font": (
+            "size": var(--sizes-form-medium-text),
+            "weight": 400,
+            "style": normal,
+            "spacing": normal,
+            "transform": initial,
+        ),
+        "color": (
+            "background": var(--color-gray-10),
+            "text": var(--color-gray-100)
+        ),
+        "border": (
+            "width": 0,
+            "radius": var(--radius)
+        ),
+        "padding": 15px,
+    ),
+    "subnav": (
+        "font": (
+            "size": inherit,
+            "weight": inherit,
+            "transform": unset
+        ),
+    ),
+    "header": (
+        "logo": (
+            "font": (
+                "typeface": var(--font-family-secondary),
+                "size": var(--sizes-text-2xlarge-size),
+                "weight": 700,
+                "spacing": normal,
+                "transform": initial,
+            ),
+            "image": (
+                "width": initial,
+                "height": initial,
+            ),
+            "color": (
+                "text": var(--color-gray-100),
+            ),
+        ),
+        "navbar": (
+            "font": (
+                "typeface": var(--font-family-primary),
+                "size": 16px,
+                "weight": 400,
+                "style": normal,
+                "spacing": .02rem,
+                "transform": initial,
+            ),
+            "color": (
+                "text": var(--color-gray-100),
+                "text-hover": var(--color-primary),
+            ),
+            "height": 70px,
+            "vertical-spacing": 15px,
+            "row-spacing": 15px,
+            "sticky": (
+                "height": 70px,
+                "color": (
+                    "text": inherit,
+                    "background": white,
+                ),
+                "shadow": 0 1px 20px -10px rgb( 0 0 0 / 15%),
+            ),
+            "mobile": (
+                "height": 70px,
+            ),
+        ),
+        "topbar": (
+            "font": (
+                "typeface": var(--header-navbar-font-typeface),
+                "size": var(--sizes-text-xsmall-size),
+                "weight": 400,
+                "style": normal,
+                "spacing": .02rem,
+                "transform": initial,
+            ),
+            "color": (
+                "text": var(--color-gray-100),
+                "text-hover": var(--color-primary),
+            ),
+            "height": 32px,
+            "vertical-spacing": 5px,
+            "row-spacing": 30px,
+        ),
+        "bottombar": (
+            "font": (
+                "typeface": var(--header-navbar-font-typeface),
+                "size": var(--sizes-text-small-size),
+                "weight": 400,
+                "style": normal,
+                "spacing": .02rem,
+                "transform": initial,
+            ),
+            "color": (
+                "text": var(--color-gray-100),
+                "text-hover": var(--color-primary),
+            ),
+            "height": 50px,
+            "vertical-spacing": 10px,
+            "row-spacing": 30px,
+        ),
+        "nav": (
+            "font": (
+                "typeface": inherit,
+                "size": inherit,
+                "weight": inherit,
+                "style": inherit,
+                "spacing": inherit,
+                "transform": inherit,
+            ),
+            "color": (
+                "text": inherit,
+                "text-hover": var(--header-navbar-color-text-hover),
+            ),
+            "row-spacing": 30px,
+        ),
+        "search": (
+            "color": (
+                "text": inherit,
+                "text-hover": var(--color-primary),
+            ),
+        ),
+        "cart": (
+            "color": (
+                "text": inherit,
+                "text-hover": var(--color-primary),
+            ),
+        ),
+    ),
+);
+
+$demo-config: () !default;
+$demo-user-config: () !default;
+
+$tmp-config: ();
+
+$tmp-config: map.deep-merge($tmp-config, $default-config);
+$tmp-config: map.deep-merge($tmp-config, $config);
+$tmp-config: map.deep-merge($tmp-config, $demo-config);
+$tmp-config: map.deep-merge($tmp-config, $user-config);
+$tmp-config: map.deep-merge($tmp-config, $demo-user-config);
+
+$config: $tmp-config;
+
+$config: map-merge($config, (
+    'color': create-color-config-multiple(map-get($config, 'color'))
+));

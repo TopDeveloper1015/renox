@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zxx" class="uk-background-white dark:uk-background-gray-100 dark:uk-text-gray-40">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign in - Renox</title>
+        <meta name="description" content="This is a login page">
+        <meta name="theme-color" content="#0066ff">
+
+        <!-- preload head styles -->
+        <link rel="preload" href="../assets/fonts/gt-walsheim/gt-walsheim-light.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="../assets/fonts/gt-walsheim/gt-walsheim-regular.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="../assets/fonts/gt-walsheim/gt-walsheim-medium.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="../assets/fonts/gt-walsheim/gt-walsheim-bold.woff" as="font" type="font/woff" crossorigin>
+        <link rel="preload" href="../assets/fonts/brand-icons/brand-icons.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" as="style">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" as="style">
+        <link rel="preload" href="../assets/css/theme/main.min.css" as="style">
+
+        <!-- preload footer scripts -->
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js" as="script">
+        <link rel="preload" href="../assets/js/uikit-components.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" as="script">
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" as="script">
+        <link rel="preload" href="../assets/js/app.js" as="script">
+        <link rel="preload" href="../assets/js/swiper-helper.js" as="script">
+        <link rel="preload" href="../assets/js/typed-helper.js" as="script">
+        <link rel="preload" href="../assets/js/anime-helper.js" as="script">
+        <link rel="preload" href="../assets/js/anime-helper-defined-timelines.js" as="script">
+
+        <!-- include styles -->
+        <script src="../assets/js/app-head.js"></script>
+        <link rel="stylesheet" href="../assets/css/theme/main.min.css">
+
+        <!-- include scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
+        <script src="../assets/js/uikit-components.js"></script>
+    </head>
+    <body class="uni-body">
+
+        <!-- Menu modal -->
+        <div id="uni_mobile_menu" class="uni-mobile-menu uk-offcanvas" data-uk-offcanvas="mode: push; overlay: true; flip: true; selPanel: .uk-offcanvas-bar-panel;">
+            <div class="uk-offcanvas-bar-panel uk-panel dark:uk-background-gray-100">
+                <div class="uni-mobile-menu-wrap uk-flex-column uk-flex-between" data-uk-height-viewport="offset-bottom: true;">
+                    <div class="uni-mobile-menu-content">
+                        <header class="uk-card uk-card-2xsmall uk-flex-middle uk-flex-between">
+                            <div class="uk-flex-1">
+                                <button aria-label="Close Menu" class="uk-offcanvas-close uk-button uk-button-small uk-button-icon uk-button-default uk-button-outline uk-radius-circle" type="button">
+                                    <i class="uk-icon-small" data-feather="arrow-left"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <h5 class="uk-h5 uk-margin-remove">Navigation</h5>
+                            </div>
+                            <div class="uk-flex-1"></div>
+                        </header>
+                        <hr class="uk-margin-remove">
+                        <div class="uk-card uk-card-small">
+                            <div class="uk-panel uk-margin">
+                                <form class="search-form uk-inline uk-width-1-1@m" action="./search-ajax.html" method="get">
+                                    <span class="uk-form-icon">
+                                        <i class="uk-icon-small" data-feather="search"></i>
+                                    </span>
+                                    <input type="search" name="s" autocomplete="off" class="uk-input uk-form-small" placeholder="Search item or artist..">
+                                    <button aria-label="Clear Search Input" type="button" class="search-clear uk-form-icon uk-form-icon-flip uk-hidden">
+                                        <i class="uk-icon-xsmall" data-feather="x"></i>
+                                    </button>
+                                    <div class="search-results uk-card uk-card-small uk-card-default uk-width-medium@m uk-height-large@m uk-margin-small-top uk-overflow-auto uk-position-absolute uk-position-z-index uk-radius uk-hidden dark:uk-background-gray-90">
+                                        <div class="search-results-content uk-panel uk-hidden"></div>
+                                        <div class="search-results-loading uk-flex-center uk-flex-middle uk-height-1-1">
+                                            <span class="uk-flex-center uk-flex-middle" data-uk-spinner="ratio: .8"></span>
+                                        </div>
+                                    </div>
+                                    <noscript>
+                                        <button aria-label="Submit" type="submit" class="uk-form-icon uk-form-icon-flip">
+                                            <i class="uk-icon-xsmall" data-feather="search"></i>
+                                        </button>
+                                    </noscript>
+                                </form>
+                            </div>
+                            <div class="uk-panel">
+                                <ul class="uk-nav uk-nav-default">
+                                    <li class="uk-nav-header">Main pages</li>
+                                    <li>
+                                        <a href="index.html"><i class="uk-icon-xsmall" data-feather="home"></i> Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="explore.html"><i class="uk-icon-xsmall" data-feather="compass"></i> Explore</a>
+                                    </li>
+                                    <li>
+                                        <a href="activity.html"><i class="uk-icon-xsmall" data-feather="activity"></i> Actvity</a>
+                                    </li>
+                                    <li class="uk-nav-header">Community</li>
+                                    <li>
+                                        <a href="blog.html"><i class="uk-icon-xsmall" data-feather="book-open"></i> Blog</a>
+                                    </li>
+                                    <li>
+                                        <a href="help-center.html"><i class="uk-icon-xsmall" data-feather="help-circle"></i> Help center</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html"><i class="uk-icon-xsmall" data-feather="send"></i> Contact</a>
+                                    </li>
+                                    <li class="uk-nav-header">Inner pages</li>
+                                    <li>
+                                        <a href="create.html"><i class="uk-icon-xsmall" data-feather="plus-circle"></i> Create</a>
+                                    </li>
+                                    <li>
+                                        <a href="author.html"><i class="uk-icon-xsmall" data-feather="user"></i> Author</a>
+                                    </li>
+                                    <li>
+                                        <a href="authors.html"><i class="uk-icon-xsmall" data-feather="users"></i> Authors</a>
+                                    </li>
+                                    <li>
+                                        <a href="collections.html"><i class="uk-icon-xsmall" data-feather="layers"></i> Collection</a>
+                                    </li>
+                                    <li>
+                                        <a href="base.html"><i class="uk-icon-xsmall" data-feather="box"></i> Base components</a>
+                                    </li>
+                                    <li>
+                                        <a href="404.html"><i class="uk-icon-xsmall" data-feather="x-circle"></i> 404 page</a>
+                                    </li>
+                                    <li class="uk-nav-header">Account</li>
+                                    <li>
+                                        <a href="sign-in.html"><i class="uk-icon-xsmall" data-feather="log-in"></i> Sign in</a>
+                                    </li>
+                                    <li>
+                                        <a href="sign-up.html"><i class="uk-icon-xsmall" data-feather="user"></i> Sign up</a>
+                                    </li>
+                                    <li>
+                                        <a href="reset-password.html"><i class="uk-icon-xsmall" data-feather="lock"></i> Reset password</a>
+                                    </li>
+                                    <li class="uk-nav-header">Content &amp; Privacy</li>
+                                    <li>
+                                        <a href="#"><i class="uk-icon-xsmall" data-feather="file-text"></i> Terms of use</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="uk-icon-xsmall" data-feather="file-text"></i> Privacy Policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share modal -->
+        <div id="share_this" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-text-center uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <h3 class="uk-h4">Share this!</h3>
+                <div class="uni-modal-share-icons uk-grid uk-child-width-expand uk-flex-center" data-uk-grid>
+                    <div>
+                        <a href="https://twitter.com/intent/tweet?url=#link&text=title" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-twitter"></i></div>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=#link" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-facebook"></i></div>
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=#link" rel="noopener" target="_blank">
+                            <div><i class="uk-icon-small brand-linkedin"></i></div>
+                            <span>Linkedin</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="mailto:someone@yoursite.com?subject=title">
+                            <div><i class="uk-icon-small material-icons">mail</i></div>
+                            <span>E-mail</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Send Report modal -->
+        <div id="send_report" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="#report">Report</a></li>
+                        <li><a href="#report_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4">Why are you reporting?</h3>
+                                <p class="uk-text-muted">Describe why you think this item should be removed from marketplace.</p>
+                                <div class="uk-form-stack uk-grid-xsmall uk-child-width-1-1 uk-grid" data-uk-grid>
+                                    <div class="uk-form-group">
+                                        <span class="uk-text-bold">Your message:</span>
+                                        <textarea class="uk-input uk-height-xsmall uk-margin-xsmall-top" placeholder="Tell us some details.."></textarea>
+                                    </div>
+                                    <div class="uk-form-group">
+                                        <button type="button" class="uk-button uk-button-medium uk-button-danger uk-width-1-1" data-uk-switcher-item="next">Send report</button>
+                                        <button type="button" class="uk-button uk-button-medium uk-button-default uk-button-alt uk-width-1-1 uk-margin-xsmall-top uk-modal-close">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-lead">We have received your report!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline uk-margin-xsmall-top" data-uk-switcher-item="previous">Submit another report</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Place a bid modal -->
+        <div id="place_bid" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="#switcher_wallet">Connect wallet</a></li>
+                        <li><a href="#switcher_place_bid">Place a bid</a></li>
+                        <li><a href="#switcher_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m">Sign in with your wallet</h3>
+                                <p class="uk-text-muted">Sign in with one of available wallet providers or create a new wallet.</p>
+                                <div data-uk-margin="margin: uk-margin-xsmall-top">
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/torus.svg" alt="torus" data-uk-svg loading="lazy"> </span>
+                                        <b>Torus</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/metamask.svg" alt="metamask" data-uk-svg loading="lazy"> </span>
+                                        <b>Metamask</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/coinbase.svg" alt="coinbase" data-uk-svg loading="lazy"> </span>
+                                        <b>Coinbase</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/walletconnect.svg" alt="walletconnect" data-uk-svg loading="lazy"> </span>
+                                        <b>Mobile Wallet</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m uk-flex-middle">
+                                    <a href="#wallet" class="uk-button uk-button-xsmall uk-button-default uk-button-outline uk-button-icon uk-radius-circle uk-margin-small-right" data-uk-switcher-item="previous"><i class="uk-icon-small material-icons">arrow_backward</i></a>
+                                    <span>Place a bid</span>
+                                </h3>
+                                <p class="uk-text-muted">
+                                    You are about to purchase <b class="uk-text-gray-100 dark:uk-text-white">Metaverse Game</b> from <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@TheSalvare</a> </b>
+                                </p>
+                                <div data-uk-margin>
+                                    <div class="uk-form-group">
+                                        <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                            <div class="uk-width-expand">Enter your bid</div>
+                                            <div><input type="text" class="uk-form-blank uk-width-2xsmall uk-text-medium uk-text-right dark:uk-text-white" value="1.62"> ETH</div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="uk-form-group">
+                                        <div data-uk-margin="margin: uk-margin-2xsmall-top">
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Your balance</div>
+                                                    <div>2.75 ETH</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Service fee</div>
+                                                    <div>0.05 ETH</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="uk-grid-small uk-flex-middle uk-text-bold uk-grid" data-uk-grid>
+                                                    <div class="uk-width-expand">Total bid amount</div>
+                                                    <div>1.67 ETH</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-form-group uk-margin-medium-top">
+                                    <button type="button" class="uk-button uk-button-medium uk-button-gradient uk-width-1-1" data-uk-switcher-item="next">Place a bid</button>
+                                    <button type="button" class="uk-button uk-button-medium uk-button-default uk-button-alt uk-width-1-1 uk-margin-xsmall-top uk-modal-close">Cancel</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-xlarge">Your bid has been successfully placed!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline" data-uk-switcher-item="previous">Place another bid</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connect wallet modal -->
+        <div id="connect_wallet" class="uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog uk-card-xsmall uk-card-small@m uk-padding-medium-horizontal uk-margin-auto-vertical uk-width-medium@m uk-radius-large">
+                <button aria-label="Close" class="uk-modal-close-outside" type="button" data-uk-close></button>
+                <div class="uk-panel uk-flex-center uk-flex-middle uk-height-1-1">
+                    <ul hidden class="uk-subnav uk-subnav-pill" data-uk-switcher="animation: uk-animation-fade; duration: 150;">
+                        <li><a href="#switcher_wallet">Connect wallet</a></li>
+                        <li><a href="#wallet_feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="uk-switcher">
+                        <li>
+                            <div class="uk-panel">
+                                <h3 class="uk-h4 uk-h3@m">Sign in with your wallet</h3>
+                                <div data-uk-margin="margin: uk-margin-xsmall-top">
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/torus.svg" alt="torus" data-uk-svg loading="lazy"> </span>
+                                        <b>Torus</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/metamask.svg" alt="metamask" data-uk-svg loading="lazy"> </span>
+                                        <b>Metamask</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/coinbase.svg" alt="coinbase" data-uk-svg loading="lazy"> </span>
+                                        <b>Coinbase</b>
+                                    </a>
+                                    <a href="#wallet" class="uk-button uk-button-medium uk-button-default uk-button-outline uk-width-expand" data-uk-switcher-item="next">
+                                        <span class="uk-position-center-left uk-position-small"> <img class="uk-icon-small" src="../assets/images/other/walletconnect.svg" alt="walletconnect" data-uk-svg loading="lazy"> </span>
+                                        <b>Mobile Wallet</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="uk-panel uk-text-center uk-flex-column uk-flex-middle">
+                                <i class="uk-icon-large uk-text-success material-icons">check_circle</i>
+                                <p class="uk-text-xlarge">Your purchase has been completed!</p>
+                                <button type="button" class="uk-button uk-button-small uk-button-default uk-button-outline uk-modal-close">Close</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- User login modal -->
+        <div id="uni_user_login_modal" class="uk-modal-full uk-modal" data-uk-modal>
+            <div class="uk-modal-dialog dark:uk-background-gray-100 dark:uk-text-gray-30">
+                <div class="uk-modal-close-full uk-position-small">
+                    <button aria-label="Close" class="uk-button uk-button-small uk-button-icon uk-button-danger uk-button-outline uk-radius-circle" type="button">
+                        <i class="uk-icon-small uk-text-unset" data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="uk-container uk-container-xsmall">
+                    <div class="uk-section uk-width-medium@m uk-margin-auto uk-flex-column uk-flex-center" data-uk-height-viewport="">
+                        <div class="uk-card uk-panel">
+                            <ul class="uk-subnav uk-h2" data-uk-switcher="animation: uk-animation-slide-bottom-small, uk-animation-slide-top-small" hidden>
+                                <li><a href="#login">Log in</a></li>
+                                <li><a href="#register">Register</a></li>
+                                <li><a href="#forgot_password">Forgot Password</a></li>
+                            </ul>
+                            <ul class="uk-switcher uk-margin">
+                                <li>
+                                    <form class="uni-login-form uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Sign in</h3>
+                                        <div class="uk-margin">
+                                            <label for="email-login" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-login" type="email" name="email" autocomplete="email" class="uk-input" value="user@example.com" required>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <label for="password-login" class="uk-form-label">Your password: <span class="uk-text-danger">*</span></label>
+                                            <input id="password-login" type="password" name="current-password" autocomplete="current-password" class="uk-input" value="12345678" required>
+                                        </div>
+                                        <div class="uk-margin uk-grid uk-flex-between uk-flex-middle" data-uk-grid>
+                                            <div class="uk-flex uk-flex-middle">
+                                                <input id="remember-login" type="checkbox" name="remember" class="uk-checkbox" checked>
+                                                <label for="remember-login" class="uk-form-label uk-margin-xsmall-left">Remember me?</label>
+                                            </div>
+                                            <div>
+                                                <a href="#user_reset_password" class="uk-link-line uk-text-small uk-text-bold" data-uk-switcher-item="2">
+                                                    <span>Forgot password</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Log in</button>
+                                        </div>
+                                        <div class="uk-grid uk-grid-xsmall uk-flex-center uk-text-xlarge uk-margin-medium-top@m" data-uk-grid>
+                                            <a aria-label="facebook" href="#facebook"><i class="brand-facebook-alt"></i></a>
+                                            <a aria-label="google" href="#google"><i class="brand-google"></i></a>
+                                            <a aria-label="twitter" href="#twitter"><i class="brand-twitter"></i></a>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        Don't have an account? <a href="#user_sign_up" class="uk-link-line" data-uk-switcher-item="1"><span>Sign up</span></a>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <form class="uni-signup-form uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Create an account</h3>
+                                        <div class="uk-margin">
+                                            <label for="name-signup" class="uk-form-label">Your name:</label>
+                                            <input id="name-signup" type="text" name="name" autocomplete="name" class="uk-input" value="thesalvare">
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <label for="email-signup" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-signup" type="email" name="email" autocomplete="email" class="uk-input" value="user@example.com" required>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <label for="password-signup" class="uk-form-label">Your password: <span class="uk-text-danger">*</span></label>
+                                            <input id="password-signup" type="password" name="new-password" autocomplete="new-password" class="uk-input" value="12345678" required>
+                                        </div>
+                                        <div class="uk-margin-medium">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Sign up</button>
+                                        </div>
+                                        <div class="uk-grid uk-grid-xsmall uk-flex-center uk-text-xlarge uk-margin-medium-top@m" data-uk-grid>
+                                            <a aria-label="facebook" href="#facebook"><i class="brand-facebook-alt"></i></a>
+                                            <a aria-label="google" href="#google"><i class="brand-google"></i></a>
+                                            <a aria-label="twitter" href="#twitter"><i class="brand-twitter"></i></a>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        You already have an account? <a href="#user_login" class="uk-link-line" data-uk-switcher-item="0"><span>Log in</span></a>.
+                                    </p>
+                                </li>
+                                <li>
+                                    <form class="uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                        <h3 class="uk-h3 uk-text-center uk-margin-large-bottom@m">Forgot password?</h3>
+                                        <div class="uk-margin">
+                                            <label for="email-reset" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                            <input id="email-reset" type="email" name="email" class="uk-input" required>
+                                        </div>
+                                        <div class="uk-margin-top">
+                                            <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Reset my password</button>
+                                        </div>
+                                    </form>
+                                    <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                        Did you remember your password? <a href="#user_login" class="uk-link-line" data-uk-switcher-item="0"><span>Log in</span></a>.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- Hero: Header -->
+            <header class="uni-header">
+
+                <!-- Notification bar -->
+                <div class="uk-padding-xsmall uk-text-medium uk-text-bold uk-text-center uk-margin-remove uk-radius-remove uk-background-gradient uk-text-white" data-uk-alert>
+                    <button aria-label="Close" class="uk-alert-close" type="button" data-uk-close></button>
+                    <p class="uk-flex-middle uk-flex-center uk-margin-remove uk-visible@m">A peer-to-peer marketplace for NFTs, rare digital items and crypto collectibles. <a href="#link" class="uk-button uk-button-2xsmall uk-button-default uk-button-invert uk-margin-small-left uk-text-small">Get started</a></p>
+                    <p class="uk-margin-remove uk-hidden@m">
+                        <a class="uk-link-reset uk-margin-2xsmall-left uk-text-semibold" href="#link"><u>A peer-to-peer marketplace.</u></a>
+                    </p>
+                </div>
+
+                <!-- Header navbar -->
+                <div class="uni-header-navbar" data-uk-sticky="top: 60; animation: uk-animation-slide-top">
+                    <div class="uk-container uk-container-large">
+                        <nav class="uk-navbar uk-navbar-container uk-navbar-transparent" data-uk-navbar>
+                            <div class="uk-navbar-top">
+                                <div class="uk-navbar-left uk-flex-1 uk-visible@m">
+                                    <ul class="uk-navbar-nav dark:uk-text-gray-10 uk-visible@m" data-uk-navbar-bound>
+                                        <li>
+                                            <a href="explore.html">Explore</a>
+                                            <ul class="uk-submenu">
+                                                <li><a href="explore.html">Explore one</a></li>
+                                                <li><a href="explore-sidebar.html">Explore two</a></li>
+                                                <li><a href="item-details.html">Single artwork</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="activity.html">Activity</a></li>
+                                        <li>
+                                            <a href="#community">Community</a>
+                                            <ul class="uk-submenu">
+                                                <li>
+                                                    <a href="blog.html">Blog</a>
+                                                    <ul class="uk-submenu">
+                                                        <li><a href="blog.html">Archive</a></li>
+                                                        <li><a href="blog-author.html">Author</a></li>
+                                                        <li><a href="blog-category.html">Category</a></li>
+                                                        <li><a href="blog-single.html">Single post</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="help-center.html">Help Center</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Pages</a>
+                                            <ul class="uk-submenu">
+                                                <li><a href="base.html">Base Uikit</a></li>
+                                                <li><a href="create.html">Create</a></li>
+                                                <li><a href="connect-wallet.html">Connect wallet</a></li>
+                                                <li><a href="authors.html">Authors</a></li>
+                                                <li><a href="author.html">Author</a></li>
+                                                <li><a href="collections.html">Collections</a></li>
+                                                <li>
+                                                    <a href="#">Other</a>
+                                                    <ul class="uk-submenu">
+                                                        <li><a href="sign-in.html">Sign in</a></li>
+                                                        <li><a href="sign-up.html">Sign up</a></li>
+                                                        <li><a href="reset-password.html">Reset password</a></li>
+                                                        <li><a href="terms.html">Terms of use</a></li>
+                                                        <li><a href="privacy.html">Privacy policy</a></li>
+                                                        <li><a href="404.html">Error 404</a></li>
+                                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="uk-navbar-center">
+                                    <div class="uk-navbar-item uk-hidden@m">
+                                        <a class="uk-link" href="#uni_mobile_menu" data-uk-toggle>
+                                            <span class="material-icons">menu</span>
+                                        </a>
+                                    </div>
+
+                                    <a class="uk-logo uk-navbar-item uk-h4 uk-h3@m uk-margin-remove" href="index.html">
+                                        <span class="uk-visible@l"> <img class="uk-visible dark:uk-hidden" width="140" src="../assets/images/logo.svg" alt="Renox" loading="lazy"> <img class="uk-hidden dark:uk-visible" width="140" src="../assets/images/logo_light.svg" alt="Renox" loading="lazy"> </span>
+                                        <span class="uk-hidden@l"> <img class="" width="40" src="../assets/images/logo-image.svg" alt="Renox" loading="lazy"> </span>
+                                    </a>
+                                </div>
+
+                                <div class="uk-navbar-right uk-flex-1 uk-flex-right">
+                                    <div class="uk-navbar-item">
+
+                                        <!-- header: search toggle -->
+                                        <button aria-label="Search" type="button" class="uk-button uk-button-small uk-button-icon uk-radius-circle uk-margin-2xsmall-right uk-visible@m">
+                                            <i class="uk-icon-small" data-feather="search"></i>
+                                        </button>
+                                        <div class="uk-drop" data-uk-drop="mode: click; pos: left-center; offset: 0">
+                                            <div class="uk-search uk-search-navbar uk-width-1-1">
+                                                <form class="search-form uk-inline uk-width-1-1@m" action="./search-ajax.html" method="get">
+                                                    <span class="uk-form-icon">
+                                                        <i class="uk-icon-small" data-feather="search"></i>
+                                                    </span>
+                                                    <input type="search" name="s" autocomplete="off" class="uk-input uk-form-small" placeholder="Search item or artist..">
+                                                    <button aria-label="Clear Search Input" type="button" class="search-clear uk-form-icon uk-form-icon-flip uk-hidden">
+                                                        <i class="uk-icon-xsmall" data-feather="x"></i>
+                                                    </button>
+                                                    <div class="search-results uk-card uk-card-small uk-card-default uk-width-medium@m uk-height-large@m uk-margin-small-top uk-overflow-auto uk-position-absolute uk-position-z-index uk-radius uk-hidden dark:uk-background-gray-90">
+                                                        <div class="search-results-content uk-panel uk-hidden"></div>
+                                                        <div class="search-results-loading uk-flex-center uk-flex-middle uk-height-1-1">
+                                                            <span class="uk-flex-center uk-flex-middle" data-uk-spinner="ratio: .8"></span>
+                                                        </div>
+                                                    </div>
+                                                    <noscript>
+                                                        <button aria-label="Submit" type="submit" class="uk-form-icon uk-form-icon-flip">
+                                                            <i class="uk-icon-xsmall" data-feather="search"></i>
+                                                        </button>
+                                                    </noscript>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- header: nofitications -->
+                                        <button type="button" class="uni-login-visible uk-button uk-button-small uk-button-icon uk-radius-circle uk-margin-2xsmall-right">
+                                            <i class="uk-icon-small" data-feather="bell"></i>
+                                            <span class="uni-notifications-count uk-position-top-right uk-text-2xsmall uk-background-danger uk-text-white uk-radius-circle">5</span>
+                                        </button>
+                                        <div class="uni-notifications uk-dropdown uk-width-medium@m" data-uk-dropdown="boundary: .uk-navbar-item; pos: bottom-right; mode: click; animation: uk-animation-slide-bottom-small;">
+                                            <div class="uk-grid uk-grid-small uk-flex-middle uk-flex-between uk-margin-xsmall" data-uk-grid="">
+                                                <div class="uk-width-expand">
+                                                    <h3 class="uk-h6">Notifications</h3>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-ghost uk-radius-circle">
+                                                        <i class="uk-icon-small material-icons">more_horiz</i>
+                                                    </button>
+                                                    <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                        <ul class="uk-nav uk-dropdown-nav">
+                                                            <li>
+                                                                <a href="#mark_as_read">
+                                                                    <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                    <span>Mark all as read</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#activity_settings">
+                                                                    <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">settings</i>
+                                                                    <span>Notifications settings</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="activity.html">
+                                                                    <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">open_in_new</i>
+                                                                    <span>Open notifications</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="uni-notifications-list uk-nav uk-text-small uk-text-muted">
+                                                <li class="uk-visible-toggle">
+                                                    <div class="uk-grid-2xsmall uk-grid" data-uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <div class="uni-user-avatar uk-panel">
+                                                                <div class="uk-panel uk-overflow-hidden uk-radius-circle">
+                                                                    <canvas width="40" height="40"></canvas>
+                                                                    <img src="../assets/images/artworks/09.jpg" alt="MikeSawyer" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy"> <a aria-label="MikeSawyer" href="author.html" class="uk-position-cover"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <p class="uk-margin-remove">
+                                                                New item listed by <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@Thesalvare</a> </b>
+                                                            </p>
+                                                            <span class="uk-text-meta">Just now</span>
+                                                        </div>
+                                                        <div class="uk-width-auto">
+                                                            <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-invert uk-radius-circle uk-box-shadow-2xsmall uk-position-z-index uk-invisible-hover">
+                                                                <i class="uk-icon-xsmall material-icons">more_horiz</i>
+                                                            </button>
+                                                            <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                                <ul class="uk-nav uk-dropdown-nav">
+                                                                    <li>
+                                                                        <a href="#mark_as_read">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                            <span>Mark as read</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#activity_remove">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">remove_circle_outline</i>
+                                                                            <span>Remove this notifications</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Activity" href="activity.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li class="uk-visible-toggle">
+                                                    <div class="uk-grid-2xsmall uk-grid" data-uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <div class="uni-user-avatar uk-panel">
+                                                                <div class="uk-panel uk-overflow-hidden uk-radius-circle">
+                                                                    <canvas width="40" height="40"></canvas>
+                                                                    <img src="../assets/images/users/02.gif" alt="Mike Sawyer" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy"> <a aria-label="Mike Sawyer" href="author.html" class="uk-position-cover"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <p class="uk-margin-remove">
+                                                                Started following <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@0x355...2f4f4</a> </b>
+                                                            </p>
+                                                            <span class="uk-text-meta">1 min ago</span>
+                                                        </div>
+                                                        <div class="uk-width-auto">
+                                                            <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-invert uk-radius-circle uk-box-shadow-2xsmall uk-position-z-index uk-invisible-hover">
+                                                                <i class="uk-icon-xsmall material-icons">more_horiz</i>
+                                                            </button>
+                                                            <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                                <ul class="uk-nav uk-dropdown-nav">
+                                                                    <li>
+                                                                        <a href="#mark_as_read">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                            <span>Mark as read</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#activity_remove">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">remove_circle_outline</i>
+                                                                            <span>Remove this notifications</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Activity" href="activity.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li class="uk-visible-toggle">
+                                                    <div class="uk-grid-2xsmall uk-grid" data-uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <div class="uni-user-avatar uk-panel">
+                                                                <div class="uk-panel uk-overflow-hidden uk-radius-circle">
+                                                                    <canvas width="40" height="40"></canvas>
+                                                                    <img src="../assets/images/users/03.gif" alt="Mike Sawyer" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy"> <a aria-label="Mike Sawyer" href="author.html" class="uk-position-cover"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <p class="uk-margin-remove">
+                                                                Placed bid by <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@Africarare</a> </b>
+                                                            </p>
+                                                            <span class="uk-text-meta">5 mins ago</span>
+                                                        </div>
+                                                        <div class="uk-width-auto">
+                                                            <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-invert uk-radius-circle uk-box-shadow-2xsmall uk-position-z-index uk-invisible-hover">
+                                                                <i class="uk-icon-xsmall material-icons">more_horiz</i>
+                                                            </button>
+                                                            <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                                <ul class="uk-nav uk-dropdown-nav">
+                                                                    <li>
+                                                                        <a href="#mark_as_read">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                            <span>Mark as read</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#activity_remove">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">remove_circle_outline</i>
+                                                                            <span>Remove this notifications</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Activity" href="activity.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li class="uk-visible-toggle">
+                                                    <div class="uk-grid-2xsmall uk-grid" data-uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <div class="uni-user-avatar uk-panel">
+                                                                <div class="uk-panel uk-overflow-hidden uk-radius-circle">
+                                                                    <canvas width="40" height="40"></canvas>
+                                                                    <img src="../assets/images/users/04.gif" alt="Mike Sawyer" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy"> <a aria-label="Mike Sawyer" href="author.html" class="uk-position-cover"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <p class="uk-margin-remove">
+                                                                New item listed by <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@Spooky</a> </b>
+                                                            </p>
+                                                            <span class="uk-text-meta">24 mins ago</span>
+                                                        </div>
+                                                        <div class="uk-width-auto">
+                                                            <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-invert uk-radius-circle uk-box-shadow-2xsmall uk-position-z-index uk-invisible-hover">
+                                                                <i class="uk-icon-xsmall material-icons">more_horiz</i>
+                                                            </button>
+                                                            <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                                <ul class="uk-nav uk-dropdown-nav">
+                                                                    <li>
+                                                                        <a href="#mark_as_read">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                            <span>Mark as read</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#activity_remove">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">remove_circle_outline</i>
+                                                                            <span>Remove this notifications</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Activity" href="activity.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li class="uk-visible-toggle">
+                                                    <div class="uk-grid-2xsmall uk-grid" data-uk-grid>
+                                                        <div class="uk-width-auto">
+                                                            <div class="uni-user-avatar uk-panel">
+                                                                <div class="uk-panel uk-overflow-hidden uk-radius-circle">
+                                                                    <canvas width="40" height="40"></canvas>
+                                                                    <img src="../assets/images/users/01.gif" alt="Mike Sawyer" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy"> <a aria-label="Mike Sawyer" href="author.html" class="uk-position-cover"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="uk-width-expand">
+                                                            <p class="uk-margin-remove">
+                                                                Like given by <b class="uk-text-gray-100 dark:uk-text-white"> <a class="uni-user-link uk-link-reset" href="author.html">@0x355...2f4f4</a> </b>
+                                                            </p>
+                                                            <span class="uk-text-meta">30 mins ago</span>
+                                                        </div>
+                                                        <div class="uk-width-auto">
+                                                            <button type="button" class="uk-button uk-button-2xsmall uk-button-icon uk-button-default uk-button-invert uk-radius-circle uk-box-shadow-2xsmall uk-position-z-index uk-invisible-hover">
+                                                                <i class="uk-icon-xsmall material-icons">more_horiz</i>
+                                                            </button>
+                                                            <div class="uk-dropdown-minimal uk-text-bold uk-width-small@m uk-dropdown" data-uk-dropdown="mode: click; pos: bottom-right;">
+                                                                <ul class="uk-nav uk-dropdown-nav">
+                                                                    <li>
+                                                                        <a href="#mark_as_read">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">check</i>
+                                                                            <span>Mark as read</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#activity_remove">
+                                                                            <i class="uk-icon-xsmall material-icons uk-margin-xsmall-right">remove_circle_outline</i>
+                                                                            <span>Remove this notifications</span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Activity" href="activity.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="activity.html" class="uk-button uk-button-small uk-button-default uk-button-outline uk-width-1-1 uk-margin-xsmall-top">See all</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- header: call to actions -->
+                                        <a href="create.html" class="uk-button uk-button-small uk-button-darkgrey uk-radius-large uk-margin-xsmall-left uk-margin-xsmall-right uk-visible@m">
+                                            <span>Create</span>
+                                        </a>
+                                        <a href="#uni_user_login_modal" class="uni-logout-visible uk-button uk-button-small uk-button-default uk-button-alt uk-radius-large" data-uk-toggle onclick="UIkit.switcher('#uni_user_login_modal [data-uk-switcher]').show(0)">
+                                            <span>Sign in</span>
+                                        </a>
+
+                                        <!-- header: user logged in -->
+                                        <button type="button" class="uni-login-visible uk-button uk-button-small uk-button-icon uk-radius-circle uk-box-shadow-xsmall uk-margin-xsmall-left">
+                                            <img src="../assets/images/artworks/15.gif" alt="Yayoi" class="uni-user-avatar-image uk-cover uk-radius-circle" data-uk-cover loading="lazy">
+                                        </button>
+                                        <div class="uk-dropdown" data-uk-dropdown="boundary: .uni-header-navbar; mode: click; animation: uk-animation-slide-bottom-small;">
+                                            <ul class="uk-nav uk-dropdown-nav">
+                                                <li class="uk-margin-xsmall">
+                                                    <div class="uk-grid-2xsmall uk-flex-middle uk-grid" data-uk-grid>
+                                                        <div class="uk-width-expand">
+                                                            <h5 class="uk-h6 uk-margin-remove"><a class="uni-user-link uk-link-reset" href="author.html">@Yayoi</a></h5>
+                                                            <span class="uk-text-small uk-text-muted">Balance: <span class="uk-text-gradient">9.209 ETH</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <a aria-label="Dashboard" href="author.html" class="uk-position-cover"></a>
+                                                </li>
+                                                <li class="uk-nav-divider"></li>
+                                                <li><a href="author.html?switcher-id=profile-tabs&switcher-index=0">My Items</a></li>
+                                                <li><a href="author.html?switcher-id=profile-tabs&switcher-index=1">Collectibles</a></li>
+                                                <li><a href="author.html?switcher-id=profile-tabs&switcher-index=3">Followers</a></li>
+                                                <li><a href="author.html?switcher-id=profile-tabs&switcher-index=4">Edit Profile</a></li>
+                                                <li class="uk-nav-divider"></li>
+                                                <li><a class="uni-logout-link uk-text-danger" href="#logout">Logout</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dark/Light toggle -->
+            <div class="darkmode-trigger uk-position-bottom-right uk-position-small uk-position-fixed uk-box-shadow-large uk-radius-circle" data-darkmode-toggle="">
+                <label class="switch">
+                    <span class="sr-only">Dark mode toggle</span>
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="uni-sign-in uk-section uk-section-large@m uk-panel uk-overflow-hidden uk-border-top">
+
+                <!-- Page header -->
+                <header class="uni-page-header">
+                    <div class="uk-container">
+                        <h1 class="heading uk-h3 uk-h1@m uk-text-center">Sign in</h1>
+                    </div>
+                </header>
+                <div class="uk-margin-top uk-margin-large-top@m">
+                    <div class="uk-container">
+                        <div class="uk-flex-column uk-flex-center uk-width-medium@m uk-margin-auto">
+                            <form class="uk-form-stacked uk-panel uk-width-1-1" action="?" method="post">
+                                <div class="uk-margin">
+                                    <label for="email-login-page" class="uk-form-label">Your email: <span class="uk-text-danger">*</span></label>
+                                    <input id="email-login-page" type="email" name="email" class="uk-input" required>
+                                </div>
+                                <div class="uk-margin">
+                                    <label for="password-login-page" class="uk-form-label">Your password: <span class="uk-text-danger">*</span></label>
+                                    <input id="password-login-page" type="password" name="password" class="uk-input" required>
+                                </div>
+                                <div class="uk-margin uk-grid uk-flex-between uk-flex-middle" data-uk-grid>
+                                    <div class="uk-flex uk-flex-middle">
+                                        <input id="remember-login-page" type="checkbox" name="remember" class="uk-checkbox">
+                                        <label for="remember-login-page" class="uk-form-label uk-margin-xsmall-left">Remember me?</label>
+                                    </div>
+                                    <div>
+                                        <a href="reset-password.html" class="uk-link-line uk-text-small uk-text-bold">
+                                            <span>Forgot password</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-medium">
+                                    <button type="submit" class="uk-button uk-button-primary uk-button-large@m uk-width-expand">Log in</button>
+                                </div>
+                                <div class="uk-grid uk-grid-xsmall uk-flex-center uk-text-xlarge uk-margin-medium-top@m" data-uk-grid>
+                                    <a aria-label="facebook" href="#facebook"><i class="brand-facebook-alt"></i></a>
+                                    <a aria-label="google" href="#google"><i class="brand-google"></i></a>
+                                    <a aria-label="twitter" href="#twitter"><i class="brand-twitter"></i></a>
+                                </div>
+                            </form>
+                            <p class="uk-text-small uk-text-bold uk-text-center uk-margin-large-top@m">
+                                Don't have an account? <a href="sign-up.html" class="uk-link-line"><span>Sign up</span></a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="uni-footer uk-section-small uk-section-medium@m uk-border-top">
+            <div class="uk-container uk-container-expand">
+                <div class="uk-grid-2xlarge uk-grid-divider uk-child-width-1-1 uk-grid" data-uk-grid>
+                    <div>
+                        <div class="uk-panel uk-section@m">
+                            <div class="uk-flex-center uk-flex-middle uk-text-center">
+                                <div class="uk-panel uk-flex-column uk-flex-middle">
+                                    <h1 class="uk-h3 uk-h1@m uk-margin-small">Never miss a drop</h1>
+                                    <p class="uk-text-lead uk-text-muted uk-margin-remove">Subscribe for the latest news, drops &amp; collectibles</p>
+                                    <div class="uk-panel uk-inline uk-width-xlarge@m uk-margin-top uk-margin-medium-top@m">
+                                        <span class="uk-form-icon">
+                                            <i class="uk-icon-small" data-feather="mail"></i>
+                                        </span>
+                                        <input type="email" name="email" autocomplete="off" class="uk-input uk-form-large@m uk-radius-large" placeholder="Email">
+                                        <button type="button" class="uk-position-absolute uk-form-icon-flip uk-button uk-button-xsmall uk-button-medium@m uk-button-primary" style="margin: 4px; border-radius: 12px">Subscribe</button>
+                                    </div>
+                                    <p class="uk-text-small uk-text-muted uk-margin-large-top@m">No worries we don't spam! Unsubscribe at any time by clicking on the link in the email.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-grid-small uk-grid-medium@m uk-child-width-auto uk-flex-center uk-flex-between@m uk-flex-middle uk-text-center uk-text-left@m uk-grid" data-uk-grid>
+                            <div class="uk-flex-last@m">
+                                <ul class="uni-social-media uk-subnav uk-subnav-small uk-text-muted">
+                                    <li>
+                                        <a aria-label="twitter" href="https://twitter.com/unistudioco"><i class="uk-icon-small brand-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-label="facebook" href="https://facebook.com/unistudioco"><i class="uk-icon-small brand-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-label="snapchat" href="https://snapchat.com/unistudioco"><i class="uk-icon-small brand-snapchat"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-label="youtube-play" href="https://youtube.com/unistudioco"><i class="uk-icon-small brand-youtube-play"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-label="reddit-alien" href="https://reddit.com/unistudioco"><i class="uk-icon-small brand-reddit-alien"></i></a>
+                                    </li>
+                                    <li>
+                                        <a aria-label="quora" href="https://quora.com/unistudioco"><i class="uk-icon-small brand-quora"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="uk-grid-small uk-grid-medium@m uk-flex-center uk-flex-between@m uk-flex-middle uk-grid" data-uk-grid>
+                                    <div class="uk-flex-last@m">
+                                        <ul class="uk-subnav uk-subnav-small uk-subnav-medium@m uk-text-bold">
+                                            <li><a href="terms.html">Terms</a></li>
+                                            <li><a href="privacy.html">Privacy policy</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="uk-text-muted">© Renox, All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- include scripts -->
+        <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+        <script defer src="../assets/js/app.js"></script>
+        <script defer src="../assets/js/swiper-helper.js"></script>
+        <script defer src="../assets/js/typed-helper.js"></script>
+        <script defer src="../assets/js/anime-helper.js"></script>
+        <script defer src="../assets/js/anime-helper-defined-timelines.js"></script>
+    </body>
+</html>

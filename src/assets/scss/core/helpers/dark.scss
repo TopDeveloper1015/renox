@@ -1,0 +1,64 @@
+// Dark
+.uk-dark {
+    &.dark,
+    .dark {
+
+        // Visibility
+        &\:uk-visible {
+            display: block !important;
+        }
+        &\:uk-hidden {
+            display: none !important;
+        }
+
+        // Headlines
+        .uk-heading-line>::after,
+        .uk-heading-line>::before,
+        &.uk-heading-line>::after,
+        &.uk-heading-line>::before {
+            border-color: var(--color-gray-90) !important;
+        }
+
+    }
+
+    // Links
+    a,
+    a:link {
+        color: var(--color-gray-10);
+        &:hover {
+            color: var(--color-gray-60);
+        }
+    }
+
+    // Headings
+    .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {
+        color: var(--color-gray-10);
+    }
+}
+
+html:not(.bp-l) {
+    .uni-header-navbar.uk-active {
+        background-color: white;
+    }
+    &.uk-dark,
+    .uk-dark,
+    .uni-header.uk-dark {
+        .uni-header-navbar {
+            &.uk-active {
+                background-color: var(--color-gray-100) !important;
+            }
+        }
+    }
+}
+
+
+.uk-dark {
+    .uk-logo,
+    &.uk-logo {
+        color: var(--color-gray-10) !important;
+    }
+    .uk-droplist,
+    &.uk-droplist {
+        box-shadow: 0 0 0 1px var(--color-gray-100);
+    }
+}

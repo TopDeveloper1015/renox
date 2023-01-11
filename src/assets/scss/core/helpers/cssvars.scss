@@ -1,0 +1,47 @@
+@use 'sass:math';
+
+// ==================================================
+// Config To CSS Variables
+// ==================================================
+
+@mixin config_to_cssvars($object: $config, $prefix: '-') {
+    @if type-of($object) == 'map' {
+        @if $prefix != '-' {
+            /*
+             * Css vars #{str-slice($prefix, 3)}
+             */
+        }
+        @each $key, $value in $object {
+            @if $key != '' {
+                @include config_to_cssvars($value, $prefix + '-' + $key);
+            } @else {
+                @include config_to_cssvars($value, $prefix);
+            }
+        }
+    }
+    @else if type-of($object) != 'list' or length($object) != 0 {
+        #{$prefix}: $object;
+    }
+}
+
+/* CSS Variables Root */
+:root {
+    @include config_to_cssvars;
+}
+
+[class*=uk-width] {
+    --grid-count: 12;
+    --grid-total: 12;
+}
+
+@include wrap-media() using($bp) {
+    @each $counts in (6, 7, 8, 10, 12) {
+      @for $i from 1 through $counts - 1 {
+        .uk-width-#{$i}-#{$counts}#{$bp} {
+            --grid-count: #{$i};
+            --grid-total: #{$counts};
+            width: math.div($i, $counts) * 100%;
+        }
+      }
+    }
+}

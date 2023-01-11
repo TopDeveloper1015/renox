@@ -1,0 +1,13 @@
+@use 'sass:map';
+
+// Height
+@include wrap-media() using ($bp) {
+    // Size Modifier
+    @each $name, $size in map.get($config, 'sizes', 'height') {
+        @if $name != '' {
+            .uk-height-#{$name}#{$bp} {
+                height: var(--sizes-height-#{$name}) !important;
+            }
+        }
+    }
+}

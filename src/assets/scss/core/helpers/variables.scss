@@ -1,0 +1,48 @@
+// ==================================================
+// Default Variables
+// ==================================================
+
+@use "sass:map";
+@use "sass:list";
+
+$colors-levels: (10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+
+// Default list
+@function get_accent($type: "accent") {
+    $accent: (
+        "primary": var(--color-primary),
+        "secondary": var(--color-secondary),
+        "success": var(--color-success),
+        "warning": var(--color-warning),
+        "danger": var(--color-danger),
+        "muted": var(--color-gray-40),
+    );
+    @if ($type != 'accent') {
+        @each $key, $value in $accent {
+            $accent-key: $key;
+            $accent: map.merge($accent, (
+                $key: var(--color-#{$key}),
+            )) ;
+            @if ($type == 'button') {
+                $hover-value: $value;
+                @if type-of($value) == 'color' {
+                    $hover-value: var(--color-#{$key}-60);
+                }
+                @if type-of($value) == 'string' {
+                    $hover-value: var(--color-#{$accent-key}-60);
+                }
+                $accent: map.merge($accent, (
+                    #{$key}-hover: $hover-value
+                ));
+            }
+        }
+    }
+    @return $accent;
+}
+
+$elements: ('button', 'form', 'card', 'background', 'text', 'label', 'alert');
+$elements-accents: ();
+
+@each $type in $elements {
+    $elements-accents: map.merge($elements-accents, ($type: get_accent($type)));
+}

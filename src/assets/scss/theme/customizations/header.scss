@@ -1,0 +1,105 @@
+.uni-header {
+    z-index: 999;
+    .uk-logo {
+        transition: color 200ms ease-in;
+    }
+    .uk-navbar-nav {
+        > li {
+            ul {
+                min-width: 224px;
+                padding: 12px;
+                border-radius: var(--radius);
+                border: 1px solid;
+                @include dark-prop('border-color', transparent, rgb(255 255 255 / 8%));
+                box-shadow: 0px 8px 32px -8px rgb(0 0 0 / 25%);
+                z-index: 99;
+                li {
+                    padding: 0;
+                    > a {
+                        border-radius: calc(var(--radius) / 2);
+                        padding: 2px 12px;
+                    }
+                    &:hover > a {
+                        @include dark-prop('background-color', rgb(0 0 0 / 5%), rgb(255 255 255 / 5%));
+                    }
+                }
+            }
+            > ul {
+                * ul {
+                    top: -13px;
+                    left: calc(100% + 16px);
+                    &.reverse-submenu-open {
+                        left: auto;
+                        right: calc(100% + 16px);
+                    }
+                }
+            }
+            > a {
+                position: relative;
+            }
+            &:hover > a {
+                color: inherit;
+                opacity: .7;
+            }
+            &.uk-active {
+                > a::after {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+    .uk-scrollnav-header {
+        &.uk-active {
+            background-color: rgba(#ffffff, 0.95);
+        }
+    }
+}
+
+.uni-mobile-menu {
+    &-content::before {
+        content: '';
+        display: block;
+        height: 4px;
+        @include gradient();
+    }
+    .uk-nav {
+        > li {
+            position: relative;
+            font-weight: 700;
+            > a {
+                font-size: 1rem;
+                font-weight: 400;
+                padding: 0;
+                line-height: 1;
+                > .icon {
+                    opacity: .5;
+                    margin-right: 8px;
+                }
+            }
+            +* {
+                margin-top: 16px;
+            }
+        }
+        &-divider {
+            @include dark-prop('border-color', rgb(0 0 0 / 10%), rgb(255 255 255 / 15%));
+        }
+        &-header {
+            padding: 0;
+            @include dark-prop('color', var(--color-gray-70), var(--color-gray-70) !important);
+            &:not(:first-child) {
+                padding-top: 16px;
+                margin-top: 24px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    display: block;
+                    width: 100%;
+                    border-top: 1px solid;
+                }
+                @include dark-prop('border-color', rgb(0 0 0 / 10%), rgb(255 255 255 / 15%), ':before');
+            }
+        }
+    }
+}

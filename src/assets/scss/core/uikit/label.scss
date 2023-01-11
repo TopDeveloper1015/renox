@@ -1,0 +1,29 @@
+@use "sass:map";
+.uk-label {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1;
+    text-transform: unset;
+    padding: 4px 8px;
+    min-height: 16px;
+    border-radius: var(--radius);
+    &-gradient {
+        @include gradient();
+        color: white !important;
+    }
+    // Color Modifier
+    @each $name, $color in map.get($config, 'color') {
+        &-#{$name} {
+            background-color: var(--color-#{$name});
+            @if ( $name == 'default' ) {
+                @include dark-props((
+                    color: (var(--color-gray-80), white),
+                    background-color: (white, var(--color-gray-90)),
+                ));
+            }
+        }
+    }
+}

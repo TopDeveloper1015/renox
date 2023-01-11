@@ -1,0 +1,26 @@
+@use "sass:map";
+
+.uk-container {
+    height: 100%;
+    &-expand {
+        max-width: none;
+    }
+    // Size Modifier
+    @each $name, $size in map.get($config, 'sizes', 'container') {
+        @if $name != '' {
+            &-#{$name} {
+                max-width: var(--sizes-container-#{$name});
+            }
+        } @else {
+            max-width: var(--sizes-container);
+        }
+    }
+    >:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+@include make-responsive('.uk-container-full', 'max') {
+    max-width: 100% !important;
+    padding: 0 !important;
+}

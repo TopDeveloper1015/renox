@@ -1,0 +1,32 @@
+@use "sass:map";
+
+.uk-alert {
+    font-size: var(--alert-font-size, 1rem);
+    font-weight: var(--alert-font-weight, 400);
+    font-style: var(--alert-font-style, normal);
+    letter-spacing: var(--alert-font-spacing, normal);
+    text-transform: var(--alert-font-transform, initial);
+    background-color: var(--alert-color-background);
+    color: var(--alert-color-text);
+    padding: var(--alert-padding);
+    padding-right: calc(var(--alert-padding) * 2);
+    border-left: var(--alert-border-width) solid;
+    border-radius: var(--alert-border-radius);
+    // Color modifier
+    @each $name, $color in map.get($config, 'color') {
+        &-#{$name} {
+            background-color: var(--color-#{$name}-10);
+            color: var(--color-#{$name}-60);
+        }
+    }
+    &-close {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: 8px;
+        bottom: 0;
+        margin: auto;
+        opacity: 1;
+    }
+}
